@@ -866,42 +866,47 @@
 
           <!-- PIE CHART 1: Engagement Mix -->
           <div class="pie-chart-container">
-            <div class="pie-chart">
-              <svg viewBox="0 0 120 120">
-                <circle cx="60" cy="60" r="52" fill="none" stroke="#e2e8f0" stroke-width="8"/>
-                <!-- Strategy & Planning: 30% -->
-                <circle cx="60" cy="60" r="52" fill="none" 
-                        stroke="#10b981" stroke-width="8" stroke-linecap="round"
-                        stroke-dasharray="98 327" stroke-dashoffset="25"/>
-                <!-- Data Mapping: 40% -->
-                <circle cx="60" cy="60" r="52" fill="none" 
-                        stroke="#3b82f6" stroke-width="8" stroke-linecap="round"
-                        stroke-dasharray="130 245" stroke-dashoffset="-5"/>
-                <!-- Execution & Training: 30% -->
-                <circle cx="60" cy="60" r="52" fill="none" 
-                        stroke="#f59e0b" stroke-width="8" stroke-linecap="round"
-                        stroke-dasharray="98 327" stroke-dashoffset="-135"/>
-              </svg>
-              <div class="pie-center">
-                <div style="font-size: 1.6rem; font-weight: 700; color: var(--text);">100%</div>
-                <div style="font-size: 0.85rem; color: var(--text-light);">Engagement Mix</div>
-              </div>
-            </div>
-            <div class="pie-legend">
-              <div class="legend-item">
-                <div class="legend-color" style="background: #10b981;"></div>
-                <span>Strategy & Planning (30%)</span>
-              </div>
-              <div class="legend-item">
-                <div class="legend-color" style="background: #3b82f6;"></div>
-                <span>Data Mapping (40%)</span>
-              </div>
-              <div class="legend-item">
-                <div class="legend-color" style="background: #f59e0b;"></div>
-                <span>Execution (30%)</span>
-              </div>
-            </div>
-          </div>
+  <div class="pie-chart" style="animation-delay: 0.2s;">
+    <svg viewBox="0 0 120 120">
+      <!-- Background circle -->
+      <circle cx="60" cy="60" r="52" fill="none" stroke="#e2e8f0" stroke-width="8"/>
+      
+      <!-- Strategy & Planning: 30% = 98px arc (30/360 * 2π*52 ≈ 98) -->
+      <circle cx="60" cy="60" r="52" fill="none" 
+              stroke="#10b981" stroke-width="8" stroke-linecap="round" 
+              stroke-dasharray="98 327" stroke-dashoffset="0"/>
+      
+      <!-- Data Mapping: 40% = 131px arc (40/360 * 2π*52 ≈ 131) -->
+      <circle cx="60" cy="60" r="52" fill="none" 
+              stroke="#3b82f6" stroke-width="8" stroke-linecap="round" 
+              stroke-dasharray="131 294" stroke-dashoffset="-98"/>
+      
+      <!-- Execution & Training: 30% = 98px arc -->
+      <circle cx="60" cy="60" r="52" fill="none" 
+              stroke="#f59e0b" stroke-width="8" stroke-linecap="round" 
+              stroke-dasharray="98 327" stroke-dashoffset="-229"/>
+    </svg>
+    <div class="pie-center">
+      <div style="font-size: 1.6rem; font-weight: 700; color: var(--text);">100%</div>
+      <div style="font-size: 0.85rem; color: var(--text-light);">Project Allocation</div>
+    </div>
+  </div>
+  
+  <div class="pie-legend">
+    <div class="legend-item">
+      <div class="legend-color" style="background: #10b981;"></div>
+      <span><strong>Strategy</strong><br>30%</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color" style="background: #3b82f6;"></div>
+      <span><strong>Data Mapping</strong><br>40%</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color" style="background: #f59e0b;"></div>
+      <span><strong>Execution</strong><br>30%</span>
+    </div>
+  </div>
+</div>
 
           <!-- ENHANCED BAR CHART -->
           <div class="chart-card">

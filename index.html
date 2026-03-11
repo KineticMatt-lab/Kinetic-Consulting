@@ -2,62 +2,102 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Kinetic Consulting | Investment & Data Strategy</title>
+  <title>Kinetic Consulting | Data & Platform Strategy for Investment Firms</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Kinetic Consulting helps investment and wealth management firms modernize data, platforms, and operating models through targeted consulting engagements." />
+  <meta name="description" content="Kinetic Consulting helps investment and wealth management firms modernize data, IBOR, and front-to-back platforms with highly practical consulting support." />
   <style>
     :root {
-      --bg: #050816;
-      --bg-alt: #070b1a;
-      --accent: #4fd1c5;
-      --accent-soft: rgba(79, 209, 197, 0.12);
-      --accent-strong: #22c55e;
+      --bg: #020617;
+      --bg-alt: #050816;
+      --accent: #22c55e;
+      --accent2: #0ea5e9;
+      --accent-soft: rgba(34, 197, 94, 0.15);
       --text: #e2e8f0;
-      --muted: #a0aec0;
-      --card: #111827;
+      --muted: #94a3b8;
+      --card: #0b1120;
       --border: #1f2937;
-      --link: #63b3ed;
-      --shadow-soft: 0 18px 40px rgba(0,0,0,0.45);
-      --radius-lg: 14px;
+      --danger: #f97316;
+      --link: #38bdf8;
+      --shadow-soft: 0 24px 80px rgba(0,0,0,0.7);
+      --radius-lg: 18px;
       --radius-pill: 999px;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #1a202c 0, #050816 45%);
+      background: radial-gradient(circle at top, #020617 0, #030712 40%, #020617 100%);
       color: var(--text);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
+
     a { color: var(--link); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    .page { max-width: 1160px; margin: 0 auto; padding: 24px 18px 64px; }
+    .page {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 24px 18px 72px;
+    }
+
+    /* HEADER + NAV */
 
     header {
-      display: flex; flex-wrap: wrap; gap: 16px;
-      justify-content: space-between; align-items: center;
-      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
     }
-    .brand { display: flex; align-items: center; gap: 14px; }
-    .avatar {
-      width: 52px; height: 52px; border-radius: 14px;
-      border: 1px solid rgba(148,163,184,0.6);
-      background: conic-gradient(from 200deg, #22c55e, #0ea5e9, #6366f1, #22c55e);
-      padding: 2px;
-      box-shadow: 0 0 0 1px rgba(15,23,42,0.9), 0 12px 30px rgba(0,0,0,0.7);
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
-    .avatar-inner {
-      width: 100%; height: 100%;
+
+    .logo {
+      width: 40px;
+      height: 40px;
       border-radius: 12px;
-      background: radial-gradient(circle at 30% 0, #0f172a 0, #020617 70%);
+      background: conic-gradient(from 220deg, #22c55e, #0ea5e9, #6366f1, #22c55e);
+      padding: 2px;
+      box-shadow: 0 0 0 1px rgba(15,23,42,0.9), 0 15px 30px rgba(0,0,0,0.8);
     }
-    h1 { font-size: 1.6rem; letter-spacing: 0.02em; }
-    .subtitle { font-size: 0.95rem; color: var(--muted); }
+
+    .logo-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      background: radial-gradient(circle at 30% 0, #020617 0, #0b1120 60%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+    }
+
+    .brand-text h1 {
+      font-size: 1.4rem;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-text div {
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
 
     .header-actions {
-      display: flex; flex-wrap: wrap; gap: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
+
     .chip {
       border-radius: var(--radius-pill);
       border: 1px solid var(--border);
@@ -69,17 +109,26 @@
       align-items: center;
       gap: 6px;
     }
+
     .chip-accent {
-      border-color: rgba(79,209,197,0.8);
-      background: linear-gradient(135deg, rgba(79,209,197,0.18), rgba(15,23,42,0.95));
+      border-color: rgba(34,197,94,0.8);
+      background: linear-gradient(135deg, rgba(34,197,94,0.2), rgba(15,23,42,0.95));
       color: var(--accent);
     }
-    .chip span.icon { font-size: 0.9em; }
 
     nav {
-      display: flex; flex-wrap: wrap; gap: 8px;
-      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      padding: 8px 0 10px;
+      background: linear-gradient(180deg, rgba(2,6,23,0.96), rgba(2,6,23,0.7), transparent);
+      backdrop-filter: blur(12px);
     }
+
     .nav-link {
       padding: 7px 16px;
       border-radius: var(--radius-pill);
@@ -89,55 +138,135 @@
       background: transparent;
       color: var(--muted);
     }
+
     .nav-link.active {
-      border-color: rgba(79,209,197,0.7);
-      background: rgba(79,209,197,0.16);
+      border-color: rgba(34,197,94,0.8);
+      background: rgba(34,197,94,0.15);
       color: var(--accent);
     }
 
-    main {
-      display: grid;
-      grid-template-columns: minmax(0, 2.7fr) minmax(0, 1.3fr);
-      gap: 22px;
-    }
-    @media (max-width: 900px) {
-      main { grid-template-columns: minmax(0, 1fr); }
-    }
+    /* HERO GUI */
 
     .hero {
-      margin-bottom: 20px;
       display: grid;
-      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
       gap: 18px;
+      margin-bottom: 24px;
     }
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: minmax(0, 1fr); }
+
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
 
     .card {
-      background: radial-gradient(circle at top left, rgba(79,209,197,0.16) 0, rgba(15,23,42,0.97) 40%);
+      background: radial-gradient(circle at top left, rgba(34,197,94,0.2) 0, #020617 50%);
       border-radius: var(--radius-lg);
       border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
-      padding: 20px 18px 18px;
+      padding: 18px 18px 16px;
       position: relative;
       overflow: hidden;
     }
+
     .card::before {
       content: "";
-      position: absolute; inset: 0;
-      background: radial-gradient(circle at top right, rgba(96, 165, 250, 0.12), transparent 55%);
-      opacity: 0.9; pointer-events: none; mix-blend-mode: screen;
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(56,189,248,0.16), transparent 55%);
+      mix-blend-mode: screen;
+      opacity: 0.9;
+      pointer-events: none;
     }
-    .card-body { position: relative; z-index: 1; }
 
-    .hero-heading { font-size: 1.6rem; margin-bottom: 6px; }
-    .hero-sub { font-size: 0.96rem; color: var(--muted); margin-bottom: 12px; }
+    .card-body {
+      position: relative;
+      z-index: 1;
+    }
 
-    .hero-list { font-size: 0.9rem; margin-bottom: 14px; }
-    .hero-list li { margin-left: 16px; margin-bottom: 4px; }
+    .hero-heading {
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+    }
 
-    .cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+    .hero-highlight {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.6);
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .hero-tile {
+      border-radius: 12px;
+      border: 1px solid rgba(30,64,175,0.8);
+      background: radial-gradient(circle at top, rgba(37,99,235,0.2), rgba(15,23,42,0.96));
+      padding: 10px 10px 8px;
+      font-size: 0.83rem;
+      cursor: pointer;
+      transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, border-color 0.12s;
+    }
+
+    .hero-tile:nth-child(2) {
+      border-color: rgba(34,197,94,0.8);
+      background: radial-gradient(circle at top, rgba(34,197,94,0.2), rgba(15,23,42,0.96));
+    }
+
+    .hero-tile:nth-child(3) {
+      border-color: rgba(236,72,153,0.8);
+      background: radial-gradient(circle at top, rgba(236,72,153,0.18), rgba(15,23,42,0.96));
+    }
+
+    .hero-tile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.7);
+      border-color: rgba(148,163,184,1);
+    }
+
+    .hero-tile-title {
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+
+    .hero-tile-tag {
+      display: inline-block;
+      font-size: 0.74rem;
+      padding: 2px 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .hero-tile p {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-cta-row {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
     .btn-primary,
     .btn-outline {
       border-radius: var(--radius-pill);
@@ -148,162 +277,60 @@
       background: transparent;
       color: var(--text);
     }
+
     .btn-primary {
       background: linear-gradient(135deg, #22c55e, #0ea5e9);
-      border: none;
-      color: #0b1220;
+      color: #020617;
       font-weight: 600;
-      box-shadow: 0 14px 30px rgba(15,23,42,0.8);
+      border: none;
+      box-shadow: 0 16px 40px rgba(6,95,70,0.8);
     }
+
     .btn-outline {
       border-color: rgba(148,163,184,0.7);
       color: var(--muted);
-      background: rgba(15,23,42,0.9);
+      background: rgba(15,23,42,0.96);
     }
+
+    /* IMPACT PANEL / GUI CHART */
 
     .section-title {
-      font-weight: 600; font-size: 0.9rem;
-      text-transform: uppercase; letter-spacing: 0.12em;
-      color: var(--muted); margin-bottom: 9px;
-    }
-    .section-headline {
-      font-size: 1.1rem; margin-bottom: 8px;
-    }
-    .section-lead {
-      font-size: 0.9rem; color: var(--muted); margin-bottom: 12px;
-    }
-
-    .pill-row {
-      display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px;
-    }
-    .pill {
-      font-size: 0.78rem;
-      padding: 4px 9px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(75,85,99,0.9);
-      background: rgba(15,23,42,0.9);
-      color: var(--muted);
-      white-space: nowrap;
-    }
-    .pill-highlight { border-color: rgba(79,209,197,0.9); color: var(--accent); }
-
-    .service-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 10px;
-    }
-
-    .service {
-      border-radius: 10px;
-      border: 1px solid rgba(31,41,55,0.9);
-      background: rgba(7,11,26,0.96);
-      padding: 10px 11px;
-    }
-    .service-title {
-      font-size: 0.96rem; margin-bottom: 3px;
-    }
-    .service-sub {
-      font-size: 0.83rem; color: var(--muted); margin-bottom: 6px;
-    }
-    .service-list { font-size: 0.86rem; }
-    .service-list li { margin-left: 16px; margin-bottom: 3px; }
-
-    .exp-item {
-      margin-bottom: 9px;
-      border-radius: 10px;
-      border: 1px solid rgba(31,41,55,0.9);
-      background: rgba(7,11,26,0.96);
-      overflow: hidden;
-    }
-    .exp-header {
-      padding: 10px 11px;
-      display: flex; justify-content: space-between; gap: 8px;
-      cursor: pointer;
-    }
-    .exp-main { display: flex; flex-direction: column; gap: 2px; }
-    .exp-role { font-size: 0.9rem; }
-    .exp-company { font-size: 0.83rem; color: var(--muted); }
-    .exp-meta { font-size: 0.78rem; color: var(--muted); text-align: right; }
-
-    .exp-tags {
-      display: flex; flex-wrap: wrap;
-      gap: 4px; margin-top: 4px;
-    }
-    .exp-tag {
-      font-size: 0.72rem;
-      padding: 2px 7px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(55,65,81,0.9);
-      color: var(--muted);
-    }
-
-    .exp-tools-toggle {
-      font-size: 0.78rem;
-      padding: 2px 6px;
-      border-radius: var(--radius-pill);
-      border: 1px dashed rgba(79,209,197,0.6);
-      color: var(--accent);
-      cursor: pointer;
-      background: rgba(15,23,42,0.9);
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      margin-top: 4px;
-    }
-
-    .exp-content {
-      border-top: 1px solid rgba(31,41,55,0.9);
-      padding: 10px 11px;
-      display: none;
-      font-size: 0.86rem;
-      color: #e5e7eb;
-      background: linear-gradient(180deg, rgba(15,23,42,0.96), #020617);
-    }
-    .exp-content.open { display: block; }
-
-    .exp-bullets { padding-left: 16px; margin-bottom: 6px; }
-    .exp-bullets li { margin-bottom: 3px; }
-
-    .exp-tools {
-      margin-top: 4px;
-      padding: 7px;
-      border-radius: 8px;
-      background: radial-gradient(circle at top left, rgba(79,209,197,0.08), rgba(15,23,42,0.95));
-      border: 1px solid rgba(31,41,55,0.9);
-    }
-    .exp-tools-title {
-      font-size: 0.8rem;
+      font-weight: 600;
+      font-size: 0.9rem;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
       color: var(--muted);
-      margin-bottom: 4px;
-    }
-    .exp-tools-row {
-      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-bottom: 6px;
     }
 
-    .exp-note {
-      margin-top: 6px;
-      padding: 7px 8px;
-      border-radius: 8px;
-      background: rgba(79,209,197,0.06);
-      border-left: 2px solid rgba(79,209,197,0.8);
-      font-size: 0.82rem;
-      color: #a5f3fc;
+    .section-headline {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    .section-lead {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 10px;
     }
 
     .chart-card {
-      background: radial-gradient(circle at top, rgba(15,230,180,0.12), rgba(15,23,42,0.96));
-      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top, rgba(34,197,94,0.16), rgba(15,23,42,0.96));
+      border-radius: 14px;
       border: 1px solid var(--border);
-      padding: 16px 14px;
-      margin-top: 10px;
+      padding: 14px 12px;
+      margin-top: 6px;
     }
+
     .chart-title {
-      font-size: 0.9rem; margin-bottom: 4px;
+      font-size: 0.88rem;
+      margin-bottom: 4px;
     }
+
     .chart-caption {
-      font-size: 0.78rem; color: var(--muted); margin-bottom: 8px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 6px;
     }
 
     .bar-chart {
@@ -312,12 +339,18 @@
       gap: 6px;
       font-size: 0.78rem;
     }
+
     .bar-row {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
-    .bar-label { width: 130px; color: var(--muted); }
+
+    .bar-label {
+      width: 120px;
+      color: var(--muted);
+    }
+
     .bar-track {
       flex: 1;
       height: 8px;
@@ -325,38 +358,203 @@
       background: rgba(15,23,42,0.9);
       overflow: hidden;
     }
+
     .bar-fill {
       height: 100%;
       border-radius: 999px;
       background: linear-gradient(90deg, #22c55e, #0ea5e9);
     }
-    .bar-value { width: 40px; text-align: right; color: var(--muted); }
 
-    .pie-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.78rem;
+    .bar-value {
+      width: 42px;
+      text-align: right;
+      color: var(--muted);
     }
-    .legend {
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      padding: 4px 9px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(75,85,99,0.9);
+      background: rgba(15,23,42,0.96);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .pill-highlight {
+      border-color: rgba(34,197,94,0.9);
+      color: var(--accent);
+    }
+
+    /* MAIN GRID */
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.1fr);
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 960px) {
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* SERVICES GUI */
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .service {
+      border-radius: 12px;
+      border: 1px solid rgba(30,64,175,0.8);
+      background: linear-gradient(135deg, rgba(15,23,42,1), rgba(15,23,42,0.96));
+      padding: 10px 11px;
+      font-size: 0.86rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(37,99,235,0.3), transparent 50%);
+      opacity: 0.9;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    .service-body {
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .service-title {
+      font-size: 0.95rem;
+    }
+
+    .service-tag {
+      font-size: 0.74rem;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148,163,184,0.7);
+      color: var(--muted);
+    }
+
+    .service-list {
+      margin-top: 4px;
+      margin-left: 16px;
+    }
+
+    .service-list li {
+      margin-bottom: 3px;
+    }
+
+    /* CASE STUDIES INTERACTIVE CARDS */
+
+    .exp-item {
+      margin-bottom: 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(31,41,55,0.9);
+      background: rgba(7,11,26,0.98);
+      overflow: hidden;
+    }
+
+    .exp-header {
+      padding: 10px 11px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .exp-main {
       display: flex;
       flex-direction: column;
-      gap: 3px;
-    }
-    .legend-item { display: flex; align-items: center; gap: 5px; }
-    .legend-color {
-      width: 8px; height: 8px;
-      border-radius: 2px;
+      gap: 2px;
     }
 
+    .exp-role { font-size: 0.9rem; }
+    .exp-company { font-size: 0.83rem; color: var(--muted); }
+    .exp-meta { font-size: 0.78rem; color: var(--muted); text-align: right; }
+
+    .exp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 4px;
+    }
+
+    .exp-tag {
+      font-size: 0.72rem;
+      padding: 2px 7px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(55,65,81,0.9);
+      color: var(--muted);
+    }
+
+    .exp-content {
+      border-top: 1px solid rgba(31,41,55,0.9);
+      padding: 9px 11px;
+      display: none;
+      font-size: 0.86rem;
+      background: linear-gradient(180deg, rgba(15,23,42,0.96), #020617);
+    }
+
+    .exp-content.open {
+      display: block;
+    }
+
+    .exp-bullets {
+      padding-left: 16px;
+      margin-bottom: 6px;
+    }
+
+    .exp-bullets li {
+      margin-bottom: 3px;
+    }
+
+    .exp-note {
+      margin-top: 5px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      background: rgba(34,197,94,0.08);
+      border-left: 2px solid rgba(34,197,94,0.9);
+      font-size: 0.82rem;
+      color: #bbf7d0;
+    }
+
+    /* SIDEBAR / CONTACT GUI */
+
     .sidebar-card {
-      background: rgba(7, 10, 20, 0.96);
+      background: rgba(7, 10, 20, 0.98);
       border-radius: var(--radius-lg);
       border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
       padding: 16px 16px 14px;
       margin-bottom: 14px;
     }
+
     .sidebar-title {
       font-size: 0.88rem;
       text-transform: uppercase;
@@ -364,14 +562,63 @@
       color: var(--muted);
       margin-bottom: 6px;
     }
+
     .sidebar-list {
       list-style: none;
       font-size: 0.86rem;
       color: #e5e7eb;
     }
-    .sidebar-list li { margin-bottom: 6px; }
+
+    .sidebar-list li {
+      margin-bottom: 6px;
+    }
+
     .sidebar-list li span.label {
-      color: var(--muted); font-size: 0.82rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .field-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .field-input,
+    .field-textarea,
+    .field-select {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(51,65,85,0.9);
+      background: rgba(15,23,42,0.96);
+      color: var(--text);
+      padding: 7px 9px;
+      font-size: 0.84rem;
+      outline: none;
+    }
+
+    .field-input:focus,
+    .field-textarea:focus,
+    .field-select:focus {
+      border-color: rgba(34,197,94,0.9);
+      box-shadow: 0 0 0 1px rgba(34,197,94,0.5);
+    }
+
+    .field-textarea {
+      min-height: 75px;
+      resize: vertical;
+    }
+
+    .contact-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 4px;
     }
 
     footer {
@@ -380,134 +627,102 @@
       font-size: 0.78rem;
       color: var(--muted);
     }
+
   </style>
 </head>
 <body>
   <div class="page">
     <header>
       <div class="brand">
-        <div class="avatar" aria-hidden="true"><div class="avatar-inner"></div></div>
-        <div>
+        <div class="logo">
+          <div class="logo-inner">KC</div>
+        </div>
+        <div class="brand-text">
           <h1>Kinetic Consulting</h1>
-          <div class="subtitle">Practical data & platform consulting for investment and wealth managers</div>
+          <div>Data, IBOR & platform consulting for investment firms</div>
         </div>
       </div>
       <div class="header-actions">
         <div class="chip chip-accent">
-          <span class="icon">●</span>
-          <span>Led by Matthew Warner, MBA, CFA L1</span>
+          Led by Matthew Warner · MBA · CFA L1
         </div>
         <div class="chip">
-          <span class="icon">✉️</span>
-          <span>mwarner@optonline.net</span>
+          ✉️ mwarner@optonline.net
         </div>
         <div class="chip">
-          <span class="icon">📞</span>
-          <span>203-400-0006</span>
+          📞 203-400-0006
         </div>
         <div class="chip">
-          <span class="icon">🔗</span>
-          <a href="https://www.linkedin.com/in/mattwarner1" target="_blank" rel="noopener noreferrer">
-            linkedin.com/in/mattwarner1
-          </a>
+          🔗 <a href="https://www.linkedin.com/in/mattwarner1" target="_blank" rel="noopener noreferrer">linkedin.com/in/mattwarner1</a>
         </div>
       </div>
     </header>
 
     <nav>
       <button class="nav-link active" data-scroll="#hero">Overview</button>
-      <button class="nav-link" data-scroll="#services">Services</button>
+      <button class="nav-link" data-scroll="#services">Use cases</button>
       <button class="nav-link" data-scroll="#cases">Case studies</button>
-      <button class="nav-link" data-scroll="#approach">Approach</button>
+      <button class="nav-link" data-scroll="#impact">ROI</button>
       <button class="nav-link" data-scroll="#contact">Contact</button>
     </nav>
 
-    <!-- HERO / VALUE PROP -->
+    <!-- HERO GUI -->
     <section id="hero" class="hero">
       <div class="card">
         <div class="card-body">
-          <div class="section-title">Fractional consulting for complex platforms</div>
-          <h2 class="hero-heading">Turn messy data and legacy platforms into a clean, investable operating model.</h2>
+          <span class="hero-highlight">Client‑centric consulting · No fluff, production‑ready outcomes</span>
+          <h2 class="hero-heading">
+            Untangle your data, modernize your IBOR, and make platforms like SimCorp, Aladdin, and NeoXam actually work for your teams.
+          </h2>
           <p class="hero-sub">
-            Kinetic Consulting specializes in ABOR→IBOR transitions, data strategy, and front‑to‑back platform implementations
-            for asset managers, insurers, and wealth firms.
+            Choose the path closest to your current reality. The tiles below re‑organize the page content for your context.
           </p>
-          <ul class="hero-list">
-            <li>De‑risk migrations to SimCorp, Aladdin, NeoXam, Eagle and related platforms.</li>
-            <li>Design and document data flows that make risk, reporting and operations easier—not harder.</li>
-            <li>Bring pragmatic, hands‑on experience from front, mid and back office roles.</li>
-          </ul>
-          <div class="cta-row">
+
+          <div class="hero-grid">
+            <div class="hero-tile" data-scroll="#for-asset-managers">
+              <div class="hero-tile-tag">Buy‑side / asset managers</div>
+              <div class="hero-tile-title">Front‑to‑back platform change</div>
+              <p>IBOR transitions, data hubs, performance and risk flows.</p>
+            </div>
+            <div class="hero-tile" data-scroll="#for-insurers">
+              <div class="hero-tile-tag">Insurers</div>
+              <div class="hero-tile-title">Pricing & accounting control</div>
+              <p>Pricing apps, PLM, onboarding and reporting oversight.</p>
+            </div>
+            <div class="hero-tile" data-scroll="#for-rias">
+              <div class="hero-tile-tag">RIAs & wealth managers</div>
+              <div class="hero-tile-title">Operations & vendor stack</div>
+              <p>Restacks, OMS/EMS, security master and reconciliations.</p>
+            </div>
+            <div class="hero-tile" data-scroll="#contact">
+              <div class="hero-tile-tag">You already know the pain</div>
+              <div class="hero-tile-title">Talk through a use case</div>
+              <p>15‑minute fit check · concrete ideas in the first call.</p>
+            </div>
+          </div>
+
+          <div class="hero-cta-row">
             <button class="btn-primary" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">
               Book a 30‑minute intro call
             </button>
             <button class="btn-outline" onclick="document.querySelector('#cases').scrollIntoView({behavior:'smooth'})">
-              View recent projects
+              Browse real projects
             </button>
-          </div>
-          <div class="pill-row" style="margin-top:12px;">
-            <span class="pill pill-highlight">ABOR → IBOR</span>
-            <span class="pill">Data lineage & governance</span>
-            <span class="pill">Security master & pricing</span>
-            <span class="pill">Client & regulatory reporting</span>
           </div>
         </div>
       </div>
 
-      <!-- SIMPLE CHARTS / VISUALS -->
-      <div class="card">
+      <!-- Impact / GUI chart -->
+      <div class="card" id="impact">
         <div class="card-body">
-          <div class="section-title">Impact at a glance</div>
-
-          <div class="chart-card">
-            <div class="chart-title">Typical engagement mix</div>
-            <div class="chart-caption">Representative allocation of time on a 6–9 month project.</div>
-            <div class="pie-wrapper">
-              <svg width="90" height="90" viewBox="0 0 42 42" aria-hidden="true">
-                <circle cx="21" cy="21" r="15.9155"
-                        fill="transparent" stroke="#1f2937" stroke-width="6"></circle>
-                <!-- Strategy & requirements 30% -->
-                <circle cx="21" cy="21" r="15.9155"
-                        fill="transparent"
-                        stroke="#22c55e"
-                        stroke-width="6"
-                        stroke-dasharray="30 70"
-                        stroke-dashoffset="25"></circle>
-                <!-- Data & mapping 35% -->
-                <circle cx="21" cy="21" r="15.9155"
-                        fill="transparent"
-                        stroke="#0ea5e9"
-                        stroke-width="6"
-                        stroke-dasharray="35 65"
-                        stroke-dashoffset="-5"></circle>
-                <!-- Testing & rollout 35% -->
-                <circle cx="21" cy="21" r="15.9155"
-                        fill="transparent"
-                        stroke="#6366f1"
-                        stroke-width="6"
-                        stroke-dasharray="35 65"
-                        stroke-dashoffset="-40"></circle>
-              </svg>
-              <div class="legend">
-                <div class="legend-item">
-                  <span class="legend-color" style="background:#22c55e;"></span>
-                  <span>Strategy & requirements (~30%)</span>
-                </div>
-                <div class="legend-item">
-                  <span class="legend-color" style="background:#0ea5e9;"></span>
-                  <span>Data & field mapping (~35%)</span>
-                </div>
-                <div class="legend-item">
-                  <span class="legend-color" style="background:#6366f1;"></span>
-                  <span>Testing, UAT & rollout (~35%)</span>
-                </div>
-              </div>
-            </div>
+          <div class="section-title">A quick look at typical impact</div>
+          <div class="section-lead">
+            These ranges are based on recent projects. Your mileage will vary, but the pattern is consistent: fewer breaks, faster closes, higher confidence.
           </div>
 
           <div class="chart-card">
-            <div class="chart-title">Where clients see value</div>
-            <div class="chart-caption">Illustrative improvements across recent projects.</div>
+            <div class="chart-title">Operational uplift</div>
+            <div class="chart-caption">Illustrative improvements after 6–9 month engagements.</div>
             <div class="bar-chart">
               <div class="bar-row">
                 <div class="bar-label">Manual reconciliations</div>
@@ -540,94 +755,97 @@
             </div>
           </div>
 
+          <div class="pill-row">
+            <span class="pill pill-highlight">Less firefighting</span>
+            <span class="pill">Cleaner handoffs</span>
+            <span class="pill">Stronger audit trails</span>
+            <span class="pill">Happier PMs & ops</span>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- MAIN -->
     <main>
-      <!-- LEFT COLUMN: SERVICES & CASES -->
+      <!-- LEFT: USE CASES + CASE STUDIES -->
       <section>
-        <!-- SERVICES -->
+        <!-- Use cases grouped by client type -->
         <div class="card" id="services">
           <div class="card-body">
-            <div class="section-title">Services</div>
-            <div class="section-headline">What Kinetic Consulting does for you</div>
+            <div class="section-title">Use cases</div>
+            <div class="section-headline">What this looks like in your world</div>
             <p class="section-lead">
-              Engagements are structured as focused, outcome‑driven projects or fractional support. The goal is always the same:
-              production‑ready processes, not slideware.
+              The same building blocks—data, mappings, controls, documentation—show up differently for each client type.
             </p>
 
-            <div class="service-grid">
+            <div id="for-asset-managers" class="service-grid">
               <div class="service">
-                <div class="service-title">ABOR → IBOR and platform transitions</div>
-                <div class="service-sub">SimCorp, Eagle, NeoXam, Aladdin and related ecosystems.</div>
-                <ul class="service-list">
-                  <li>Map current and future‑state operating models and data flows.</li>
-                  <li>Design file layouts, field mappings and control points.</li>
-                  <li>Define reconciliation, exception handling and BAU procedures.</li>
-                </ul>
-                <div class="pill-row">
-                  <span class="pill pill-highlight">IBOR design</span>
-                  <span class="pill">File & field mapping</span>
-                  <span class="pill">Reconciliation playbooks</span>
+                <div class="service-body">
+                  <div class="service-header">
+                    <div class="service-title">For asset managers</div>
+                    <div class="service-tag">IBOR · risk · performance</div>
+                  </div>
+                  <ul class="service-list">
+                    <li>Design IBOR transitions (Eagle → SimCorp, SRM → hub) with explicit mapping and reconciliation rules.</li>
+                    <li>Align portfolio, risk and performance teams on a single set of field definitions and data sources.</li>
+                    <li>Document flows so enhancements and audits no longer depend on “tribal knowledge.”</li>
+                  </ul>
+                  <div class="pill-row">
+                    <span class="pill pill-highlight">SimCorp / Eagle / Snowflake</span>
+                    <span class="pill">IBOR design & controls</span>
+                    <span class="pill">Performance & risk feeds</span>
+                  </div>
                 </div>
               </div>
 
-              <div class="service">
-                <div class="service-title">Data strategy & security master</div>
-                <div class="service-sub">Instrument IDs, pricing, reference data, and governance.</div>
-                <ul class="service-list">
-                  <li>Define data domains, ownership and consumption patterns.</li>
-                  <li>Rationalize overlapping data terms and sources.</li>
-                  <li>Document lineage from vendors through internal platforms to end‑users.</li>
-                </ul>
-                <div class="pill-row">
-                  <span class="pill pill-highlight">VID / IDs</span>
-                  <span class="pill">Lineage documentation</span>
-                  <span class="pill">Exception dashboards</span>
+              <div id="for-insurers" class="service">
+                <div class="service-body">
+                  <div class="service-header">
+                    <div class="service-title">For insurers</div>
+                    <div class="service-tag">Pricing · PLM · onboarding</div>
+                  </div>
+                  <ul class="service-list">
+                    <li>Stabilize pricing workflows and valuation controls across internal tools and PLM.</li>
+                    <li>Streamline onboarding of new portfolios and instruments, reducing manual rework.</li>
+                    <li>Clarify ownership of key accounting & reporting fields across systems.</li>
+                  </ul>
+                  <div class="pill-row">
+                    <span class="pill pill-highlight">Pricing apps (Viper)</span>
+                    <span class="pill">SS&C PLM</span>
+                    <span class="pill">Accounting reporting</span>
+                  </div>
                 </div>
               </div>
 
-              <div class="service">
-                <div class="service-title">Client, regulatory & internal reporting</div>
-                <div class="service-sub">From legacy reports to Aladdin, PLM and custom data hubs.</div>
-                <ul class="service-list">
-                  <li>Compare legacy vs. target‑state reports field by field.</li>
-                  <li>Design Jira / issue workflows and acceptance criteria.</li>
-                  <li>Support UAT, documentation and sign‑off for critical reports.</li>
-                </ul>
-                <div class="pill-row">
-                  <span class="pill">Client statements</span>
-                  <span class="pill">Accounting & performance</span>
-                  <span class="pill">Issue tracking & UAT</span>
-                </div>
-              </div>
-
-              <div class="service">
-                <div class="service-title">Execution support for transformation programs</div>
-                <div class="service-sub">Bridge business, operations and technology teams.</div>
-                <ul class="service-list">
-                  <li>Run working groups, define scope and manage progress.</li>
-                  <li>Translate front‑office and operations needs into technical requirements.</li>
-                  <li>Create training materials, run demos and support change management.</li>
-                </ul>
-                <div class="pill-row">
-                  <span class="pill">Program support</span>
-                  <span class="pill">Training & procedures</span>
-                  <span class="pill">Vendor coordination</span>
+              <div id="for-rias" class="service">
+                <div class="service-body">
+                  <div class="service-header">
+                    <div class="service-title">For RIAs & wealth</div>
+                    <div class="service-tag">Ops · OMS · data stack</div>
+                  </div>
+                  <ul class="service-list">
+                    <li>Evaluate and restack OMS/EMS, data vendors and reconciliation tools for growth.</li>
+                    <li>Improve research, compliance and reporting workflows to match firm strategy.</li>
+                    <li>Support the “translator” role between investment teams, ops and technology.</li>
+                  </ul>
+                  <div class="pill-row">
+                    <span class="pill">Charles River · Macgregor</span>
+                    <span class="pill">Research & compliance ops</span>
+                    <span class="pill">Outsourced middle office</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- CASE STUDIES (from your resume) -->
+        <!-- Case studies as interactive GUI cards -->
         <div class="card" id="cases">
           <div class="card-body">
             <div class="section-title">Case studies</div>
-            <div class="section-headline">Recent engagements</div>
+            <div class="section-headline">Real projects, real constraints</div>
             <p class="section-lead">
-              A selection of projects across asset managers, insurers and large investment organizations.
+              Click into a tile to see the problem → approach → outcome sequence.
             </p>
 
             <!-- TCW -->
@@ -635,55 +853,54 @@
               <div class="exp-header">
                 <div class="exp-main">
                   <div class="exp-role">Client reporting migration to Aladdin</div>
-                  <div class="exp-company">TCW – Business / Data Analyst</div>
+                  <div class="exp-company">TCW · Business / Data Analyst</div>
                   <div class="exp-tags">
-                    <span class="exp-tag">BlackRock Aladdin</span>
+                    <span class="exp-tag">Aladdin</span>
                     <span class="exp-tag">Client statements</span>
-                    <span class="exp-tag">UAT</span>
                   </div>
                 </div>
                 <div class="exp-meta">
-                  <div>Nov 2024 – Mar 2025</div>
+                  <div>2024–2025</div>
                   <div>North America</div>
                 </div>
               </div>
               <div class="exp-content open">
                 <ul class="exp-bullets">
-                  <li>Reviewed legacy SMS internal/external reporting against Aladdin target‑state outputs to identify data gaps and breaks.</li>
-                  <li>Established a Jira‑based issue intake and tracking process to manage data defects, known differences and sign‑offs.</li>
-                  <li>Defined tolerances and acceptance criteria for key client statement fields to support go‑live decisions.</li>
+                  <li><strong>Problem:</strong> Legacy SMS reporting, new Aladdin stack, unclear gaps and data breaks.</li>
+                  <li><strong>Approach:</strong> Compared legacy vs. target reports field‑by‑field, introduced Jira‑based issue capture, defined tolerances and “known differences.”</li>
+                  <li><strong>Outcome:</strong> A documented path to acceptance with fewer surprises in client‑facing statements.</li>
                 </ul>
                 <div class="exp-note">
-                  Value: Provided TCW with a controlled, documented path from legacy reports to Aladdin, reducing undocumented breaks and aligning business stakeholders around a single acceptance framework.
+                  This is a good fit if you’re mid‑migration to a strategic platform and need someone to own the messy middle—testing, documenting, socializing what’s “okay” vs. what must be fixed.
                 </div>
               </div>
             </article>
 
-            <!-- SWIB SimCorp IBOR -->
+            <!-- SWIB / SimCorp IBOR -->
             <article class="exp-item">
               <div class="exp-header">
                 <div class="exp-main">
                   <div class="exp-role">IBOR transition from Eagle to SimCorp</div>
-                  <div class="exp-company">State of Wisconsin Investment Board – Business / Data Analyst</div>
+                  <div class="exp-company">SWIB · Business / Data Analyst</div>
                   <div class="exp-tags">
                     <span class="exp-tag">SimCorp Dimension</span>
                     <span class="exp-tag">IBOR</span>
-                    <span class="exp-tag">Snowflake / Markit EDM</span>
+                    <span class="exp-tag">Snowflake</span>
                   </div>
                 </div>
                 <div class="exp-meta">
-                  <div>Mar 2023 – Sep 2024</div>
+                  <div>2023–2024</div>
                   <div>North America</div>
                 </div>
               </div>
-              <div class="exp-content open">
+              <div class="exp-content">
                 <ul class="exp-bullets">
-                  <li>Owned business requirements for SimCorp IBOR file creation, processing and downstream consumption.</li>
-                  <li>Mapped and reconciled Eagle (BNY) and Eagle UDM (Snowflake) data into SimCorp / Markit EDM, backed by Excel & Power BI reconciliation tooling.</li>
-                  <li>Managed Jira tickets, data logic definitions and meeting cadence to move the project forward with clear accountability.</li>
+                  <li><strong>Problem:</strong> IBOR moving from BNY Eagle to SimCorp with complex Markit EDM and Snowflake layers.</li>
+                  <li><strong>Approach:</strong> Authored requirements, field mappings and reconciliation logic; built Excel / Power BI tooling; structured Jira workflows and meeting cadence.</li>
+                  <li><strong>Outcome:</strong> A controlled IBOR transition with traceable mappings and fewer downstream surprises.</li>
                 </ul>
                 <div class="exp-note">
-                  Value: Reduced transition risk by grounding the IBOR migration in traceable mappings and reconciliations, giving SWIB a repeatable control framework for future changes.
+                  If you’re staring at multiple data stores and no single source of truth, this type of structure makes the migration survivable.
                 </div>
               </div>
             </article>
@@ -693,111 +910,112 @@
               <div class="exp-header">
                 <div class="exp-main">
                   <div class="exp-role">Pricing & portfolio onboarding modernization</div>
-                  <div class="exp-company">American Equity Investment Life – Senior Business Analyst</div>
+                  <div class="exp-company">AEL · Senior Business Analyst</div>
                   <div class="exp-tags">
+                    <span class="exp-tag">Pricing app</span>
                     <span class="exp-tag">SS&C PLM</span>
-                    <span class="exp-tag">Pricing app (Viper)</span>
-                    <span class="exp-tag">Onboarding UI</span>
                   </div>
                 </div>
                 <div class="exp-meta">
-                  <div>Jan 2022 – Jan 2023</div>
+                  <div>2022–2023</div>
                   <div>North America</div>
                 </div>
               </div>
-              <div class="exp-content open">
+              <div class="exp-content">
                 <ul class="exp-bullets">
-                  <li>Helped build and test an internal pricing application and portfolio onboarding UI for AEL’s investment teams.</li>
-                  <li>Directed the transition of accounting data and reports from legacy tools into SS&C Precision Loan Manager.</li>
-                  <li>Authored requirements, desktop procedures and training materials and supported testing and deployment.</li>
+                  <li><strong>Problem:</strong> Pricing and onboarding flows spread across legacy tools with limited control.</li>
+                  <li><strong>Approach:</strong> Co‑designed and tested an internal pricing tool and onboarding UI; migrated reporting into PLM with new procedures and training.</li>
+                  <li><strong>Outcome:</strong> Better control over valuations, faster onboarding and clearer ownership of key reporting outputs.</li>
                 </ul>
                 <div class="exp-note">
-                  Value: Improved AEL’s control over pricing and reporting while reducing manual onboarding work for new portfolios and instruments.
+                  Ideal if you’re modernizing pricing or accounting platforms but need someone to think about how humans will actually use them day‑to‑day.
                 </div>
               </div>
             </article>
 
-            <!-- Vanguard / NeoXam & Stonewain -->
+            <!-- Vanguard -->
             <article class="exp-item">
               <div class="exp-header">
                 <div class="exp-main">
                   <div class="exp-role">Securities lending & data modernization</div>
-                  <div class="exp-company">Vanguard – Senior Business Analyst (GIDM)</div>
+                  <div class="exp-company">Vanguard · Senior Business Analyst (GIDM)</div>
                   <div class="exp-tags">
-                    <span class="exp-tag">NeoXam DataHub</span>
+                    <span class="exp-tag">NeoXam</span>
                     <span class="exp-tag">Stonewain Spire</span>
                     <span class="exp-tag">AWS S3</span>
                   </div>
                 </div>
                 <div class="exp-meta">
-                  <div>Oct 2020 – Mar 2021</div>
+                  <div>2019–2021</div>
                   <div>North America</div>
                 </div>
               </div>
-              <div class="exp-content open">
+              <div class="exp-content">
                 <ul class="exp-bullets">
-                  <li>Managed delivery of GIDM‑sourced securities lending data from GlobalOne into Stonewain Spire, including NeoXam SRM and ABOR hubs.</li>
-                  <li>Produced BRDs and data lineage cross‑maps for vendor feeds, prices, FX, AUM and sanctions data moving into DataHub.</li>
-                  <li>Supported planning for a firm‑wide price cloud on AWS S3 with stronger controls and visibility.</li>
+                  <li><strong>Problem:</strong> Securities lending data spread across legacy platforms, limited clarity on lineage.</li>
+                  <li><strong>Approach:</strong> Delivered BRDs, data lineage maps and exception handling for feeds into NeoXam / Stonewain; helped plan AWS S3‑based price cloud.</li>
+                  <li><strong>Outcome:</strong> Stronger understanding of how vendor data moves through the firm, enabling safer modernization and audits.</li>
                 </ul>
                 <div class="exp-note">
-                  Value: Gave Vanguard a clear, documented line of sight from vendor data through internal hubs to lending systems, enabling safer modernization of their data platform.
+                  Useful pattern if your data modernization effort needs hands‑on help documenting what actually happens today—not what the slide deck says.
                 </div>
               </div>
             </article>
           </div>
         </div>
-
-        <!-- APPROACH -->
-        <div class="card" id="approach">
-          <div class="card-body">
-            <div class="section-title">Approach</div>
-            <div class="section-headline">How engagements work</div>
-            <p class="section-lead">
-              The process is intentionally lightweight and designed to plug into existing program structures.
-            </p>
-            <ul class="service-list">
-              <li><strong>Discovery (1–2 weeks):</strong> Clarify scope, stakeholders, systems, and risks. Capture current‑state diagrams and artifacts.</li>
-              <li><strong>Design & alignment:</strong> Translate goals into concrete requirements, mappings and controls that both business and technology teams can own.</li>
-              <li><strong>Execution & testing:</strong> Support build, data validation, UAT and rollout with clear acceptance criteria and documentation.</li>
-              <li><strong>Handover:</strong> Deliver procedures, reference materials and training so your teams are confident after the engagement ends.</li>
-            </ul>
-          </div>
-        </div>
       </section>
 
-      <!-- RIGHT COLUMN: CREDENTIALS & CONTACT -->
+      <!-- RIGHT: CREDENTIALS + CONTACT GUI -->
       <aside>
         <div class="sidebar-card">
-          <div class="sidebar-title">Lead consultant</div>
+          <div class="sidebar-title">Who you’ll work with</div>
           <ul class="sidebar-list">
-            <li>Matthew Warner, MBA (Sacred Heart University)</li>
-            <li>Passed Level 1 of the CFA exam</li>
-            <li>Over 20 years across GE, U.S. Trust, Macquarie, BNY Mellon, SWIB, Vanguard, and others.</li>
-            <li>Front‑, middle‑ and back‑office perspectives; project, operations and business analysis roles.</li>
+            <li>Matthew Warner · MBA (Sacred Heart) · Passed CFA Level I</li>
+            <li>25+ years across GE, U.S. Trust, Macquarie, BNY Mellon, SWIB, Vanguard, and others.</li>
+            <li>Held operations, research, COO and senior business analyst roles (not just “consulting from the sidelines”).</li>
           </ul>
         </div>
 
         <div class="sidebar-card">
-          <div class="sidebar-title">Platforms & tools</div>
+          <div class="sidebar-title">Platforms in scope</div>
           <ul class="sidebar-list">
             <li>SimCorp Dimension · BlackRock Aladdin · SS&C PLM</li>
             <li>NeoXam DataHub / SRM · Eagle · Markit EDM · Snowflake</li>
-            <li>Charles River IMS · LiquidityBook · Advent Axys/Geneva/Tamale · Portia</li>
+            <li>Charles River · Macgregor · Advent Axys/Geneva/Tamale · Portia</li>
             <li>Tableau · Power BI · SQL · Jira · Confluence · DUCO</li>
           </ul>
         </div>
 
         <div class="sidebar-card" id="contact">
-          <div class="sidebar-title">Contact</div>
-          <ul class="sidebar-list">
-            <li><span class="label">Email: </span>mwarner@optonline.net</li>
-            <li><span class="label">Phone: </span>203-400-0006</li>
-            <li><span class="label">LinkedIn: </span><a href="https://www.linkedin.com/in/mattwarner1" target="_blank" rel="noopener noreferrer">linkedin.com/in/mattwarner1</a></li>
-            <li><span class="label">Location: </span>Fairfield / Greenwich, CT · open to remote & hybrid</li>
-          </ul>
-          <div style="margin-top:10px; font-size:0.82rem; color:var(--muted);">
-            Send a short note with your current platforms, challenges, and timeline. A brief call is usually enough to confirm whether Kinetic Consulting can help.
+          <div class="sidebar-title">Start a conversation</div>
+          <div class="contact-form">
+            <div>
+              <div class="field-label">Name</div>
+              <input class="field-input" type="text" placeholder="Your name" />
+            </div>
+            <div>
+              <div class="field-label">Work email</div>
+              <input class="field-input" type="email" placeholder="you@firm.com" />
+            </div>
+            <div>
+              <div class="field-label">Firm type</div>
+              <select class="field-select">
+                <option>Asset manager</option>
+                <option>Insurer</option>
+                <option>RIA / wealth</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div>
+              <div class="field-label">What’s the main challenge?</div>
+              <textarea class="field-textarea" placeholder="e.g., IBOR migration, data hub, pricing, reporting..."></textarea>
+            </div>
+            <button class="btn-primary" type="button">
+              Send brief & request a 30‑minute call
+            </button>
+            <div class="contact-note">
+              This form doesn’t send anywhere yet on GitHub Pages. For now, copy/paste your notes into an email to <strong>mwarner@optonline.net</strong>.
+            </div>
           </div>
         </div>
       </aside>
@@ -809,7 +1027,7 @@
   </div>
 
   <script>
-    // Smooth scroll nav
+    // Nav smooth scroll
     document.querySelectorAll('.nav-link').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
@@ -818,16 +1036,30 @@
         const el = document.querySelector(target);
         if (el) {
           window.scrollTo({
-            top: el.getBoundingClientRect().top + window.scrollY - 18,
+            top: el.getBoundingClientRect().top + window.scrollY - 70,
             behavior: 'smooth'
           });
         }
       });
     });
 
-    // Expandable case study sections if you add more later
+    // Hero tiles smooth scroll
+    document.querySelectorAll('.hero-tile').forEach(tile => {
+      tile.addEventListener('click', () => {
+        const target = tile.getAttribute('data-scroll');
+        const el = document.querySelector(target);
+        if (el) {
+          window.scrollTo({
+            top: el.getBoundingClientRect().top + window.scrollY - 70,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Case study expand/collapse
     document.querySelectorAll('.exp-header').forEach(header => {
-      header.addEventListener('click', (e) => {
+      header.addEventListener('click', () => {
         const content = header.nextElementSibling;
         if (content) content.classList.toggle('open');
       });
@@ -838,3 +1070,4 @@
   </script>
 </body>
 </html>
+

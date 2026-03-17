@@ -7,12 +7,13 @@
   
   <style>
     :root {
-      --dark:     #1a2b44;      /* Dark navy/charcoal for text & accents */
+      --dark:     #1a2b44;      /* Dark navy/charcoal for text */
       --accent:   #00b4d8;      /* Teal/cyan for CTAs & links */
-      --light:    #f8f9fc;      /* Very light gray-blue for main bg */
-      --gray:     #e9ecef;      /* Subtle section bg */
+      --light:    #f8f9fc;      /* Body bg */
+      --gray:     #e9ecef;
       --text:     #1a2b44;
       --hero-gradient: linear-gradient(135deg, #e6f0fa 0%, #d9e8f5 100%);
+      --overlay-light: rgba(26,43,68,0.35);  /* Light overlay for image contrast */
     }
 
     * {
@@ -108,21 +109,21 @@
     }
 
     .section-hero {
-      min-height: 60vh;
+      min-height: 70vh;
       background-size: cover;
       background-position: center;
-      color: white;
       text-align: center;
       position: relative;
       display: flex;
       align-items: center;
+      color: var(--dark);
     }
 
     .section-hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(26,43,68,0.65), rgba(26,43,68,0.75));  /* Darker overlay for contrast */
+      background: var(--overlay-light);
       z-index: 1;
     }
 
@@ -133,7 +134,7 @@
 
     .back-to-top {
       display: inline-block;
-      color: white;
+      color: var(--accent);
       font-size: 1.15rem;
       margin-bottom: 1.5rem;
       text-decoration: none;
@@ -296,7 +297,7 @@
     </div>
   </div>
 
-  <!-- ASSET MANAGERS -->
+  <!-- ASSET MANAGERS (no bg image) -->
   <section id="asset-managers">
     <div class="container">
       <a href="#" class="back-to-top" style="color: var(--accent);">← Back to Home</a>
@@ -329,8 +330,8 @@
     </div>
   </section>
 
-  <!-- INSURERS (with background image) -->
-  <section id="insurers" class="section-hero" style="background-image: url('insurers-bg.jpg');">
+  <!-- INSURERS - Light blue professional bg image embedded -->
+  <section id="insurers" class="section-hero" style="background-image: url('https://cdn-thumbnails.huggingface.co/social-thumbnails/models/WolodjaZ/MSAE.png');">
     <div class="container">
       <a href="#" class="back-to-top">← Back to Home</a>
       <h2 class="section-title">Insurers</h2>
@@ -362,8 +363,8 @@
     </div>
   </section>
 
-  <!-- RIAs & WEALTH (with background image) -->
-  <section id="rias-wealth" class="section-hero" style="background-image: url('rias-wealth-bg.jpg');">
+  <!-- RIAs & WEALTH - Light green professional bg image embedded -->
+  <section id="rias-wealth" class="section-hero" style="background-image: url('https://cdn-thumbnails.huggingface.co/social-thumbnails/models/espnet/akreal_lh_small_asr2_e_branchformer_wavlm_mistral02_aed.png');">
     <div class="container">
       <a href="#" class="back-to-top">← Back to Home</a>
       <h2 class="section-title">RIAs & Wealth</h2>

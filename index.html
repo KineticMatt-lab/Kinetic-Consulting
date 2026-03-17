@@ -3,119 +3,310 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Insurers | Kinetic Consulting</title>
+  <title>Kinetic Consulting | Data & Platform Strategy for Investment Firms</title>
   <style>
-    body { font-family: Arial, sans-serif; margin:0; padding:0; line-height:1.6; color:#333; }
-    header { 
-      background: linear-gradient(rgba(10,37,64,0.85), rgba(10,37,64,0.85)), url('insurers-bg.jpg') center/cover no-repeat;
-      color: white; padding: 120px 20px; text-align: center; 
+    :root {
+      --dark: #0a2540;
+      --accent: #00b4d8;
+      --light: #f8f9fa;
+      --gray: #f1f3f5;
     }
-    .container { max-width:1000px; margin:40px auto; padding:0 20px; }
-    a { color:#00b4d8; text-decoration:none; }
-    .back { font-size:1.1rem; margin-bottom:30px; display:inline-block; }
-    ul { font-size:1.15rem; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+    header.main {
+      background: var(--dark);
+      color: white;
+      padding: 80px 20px 60px;
+      text-align: center;
+    }
+    h1 { margin: 0; font-size: 3.5rem; }
+    .tagline { font-size: 1.6rem; margin: 12px 0; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin: 60px 0;
+    }
+    .tile {
+      background: var(--light);
+      border: 2px solid var(--dark);
+      border-radius: 12px;
+      padding: 40px 30px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .tile:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(10,37,64,0.15);
+    }
+    .tile h2 { margin-top: 0; color: var(--dark); }
+    .section {
+      padding: 80px 20px;
+      min-height: 60vh;
+    }
+    .section-header {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      padding: 140px 20px 80px;
+      text-align: center;
+      position: relative;
+    }
+    .section-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(10,37,64,0.85), rgba(10,37,64,0.85));
+      z-index: 1;
+    }
+    .section-header > * { position: relative; z-index: 2; }
+    .back-link {
+      font-size: 1.2rem;
+      color: white;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+    .cta {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+    }
+    .cta button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 18px 50px;
+      font-size: 1.3rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .results {
+      background: var(--gray);
+      padding: 80px 20px;
+      text-align: center;
+    }
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    ul { font-size: 1.15rem; padding-left: 30px; }
+    h2 { color: var(--dark); }
+    .contact-info { font-size: 1.2rem; margin: 30px 0; }
   </style>
 </head>
 <body>
 
-  <header>
+  <!-- ==================== HOME / LANDING ==================== -->
+  <header class="main">
     <div class="container">
-      <a href="index.html" class="back">← Back to Home</a>
-      <h1 style="font-size:3rem; margin:0;">Insurers</h1>
-      <p style="font-size:1.8rem;">Pricing &amp; Accounting</p>
+      <h1>Kinetic Consulting</h1>
+      <p class="tagline">Data, IBOR & platform consulting for investment firms</p>
+      <p><strong>Led by Matthew Warner · MBA</strong></p>
+      <p class="contact-info">
+        ✉️ <a href="mailto:mwarner@optonline.net">mwarner@optonline.net</a>  
+        &nbsp;&nbsp; 📞 203-400-0006  
+        &nbsp;&nbsp; 🔗 <a href="https://www.linkedin.com/in/mattwarner1" target="_blank">LinkedIn</a>
+      </p>
     </div>
   </header>
 
   <div class="container">
-    <h2>We deliver production-ready pricing controls, PLM implementations, and seamless portfolio onboarding for insurers.</h2>
-    
-    <p>Our clients move from fragmented spreadsheets and legacy systems to clean, automated, audit-ready processes — all while maintaining full regulatory compliance.</p>
-
-    <h3>Typical Engagements</h3>
-    <ul>
-      <li>Pricing engine modernization and real-time controls</li>
-      <li>Policy Lifecycle Management (PLM) system implementation and optimization</li>
-      <li>Portfolio onboarding automation and data reconciliation</li>
-      <li>Accounting &amp; reporting alignment across statutory, GAAP, and IFRS</li>
-      <li>Integration with SimCorp, Aladdin, Eagle, or custom platforms</li>
-    </ul>
-
-    <h3>Results You Can Expect</h3>
-    <ul>
-      <li>Manual pricing &amp; valuation work reduced by 60-70%</li>
-      <li>Faster month-end close and board reporting</li>
-      <li>Single source of truth for positions, cash, and risk</li>
-      <li>Audit-ready documentation and controls built in</li>
-    </ul>
-
-    <p style="text-align:center; margin:60px 0;">
-      <a href="contact.html" style="background:#0a2540; color:white; padding:18px 45px; border-radius:8px; font-size:1.2rem; text-decoration:none;">Book a 30-minute strategy call for Insurers</a>
+    <h2 style="text-align:center;">Client-centric consulting · Production-ready outcomes</h2>
+    <p style="text-align:center; font-size:1.4rem; max-width:900px; margin:50px auto;">
+      Untangle your data, modernize your IBOR, and make platforms like SimCorp, Aladdin, and Eagle work for your teams.
     </p>
-  </div>
 
-  <footer style="background:#0a2540; color:white; text-align:center; padding:40px 20px;">
-    <p>Kinetic Consulting • Matthew Warner • <a href="mailto:mwarner@optonline.net" style="color:#00b4d8;">mwarner@optonline.net</a> • 203-400-0006</p>
-  </footer>
-</body>
-</html>
-rias-wealth.html
-HTML<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RIAs &amp; Wealth | Kinetic Consulting</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin:0; padding:0; line-height:1.6; color:#333; }
-    header { 
-      background: linear-gradient(rgba(10,37,64,0.85), rgba(10,37,64,0.85)), url('rias-wealth-bg.jpg') center/cover no-repeat;
-      color: white; padding: 120px 20px; text-align: center; 
-    }
-    .container { max-width:1000px; margin:40px auto; padding:0 20px; }
-    a { color:#00b4d8; text-decoration:none; }
-    .back { font-size:1.1rem; margin-bottom:30px; display:inline-block; }
-    ul { font-size:1.15rem; }
-  </style>
-</head>
-<body>
+    <p style="text-align:center; font-size:1.2rem; margin-bottom:60px;">
+      Choose the path closest to your current reality. Click below to explore solutions tailored to your firm type.
+    </p>
 
-  <header>
-    <div class="container">
-      <a href="index.html" class="back">← Back to Home</a>
-      <h1 style="font-size:3rem; margin:0;">RIAs &amp; Wealth</h1>
-      <p style="font-size:1.8rem;">Operations Optimization</p>
+    <div class="tiles">
+      <a href="#asset-managers" class="tile">
+        <h2>Asset Managers</h2>
+        <p><strong>Platform Modernization</strong><br>IBOR transitions, data governance, risk & performance alignment</p>
+      </a>
+      
+      <a href="#insurers" class="tile">
+        <h2>Insurers</h2>
+        <p><strong>Pricing & Accounting</strong><br>Pricing controls, PLM implementation, portfolio onboarding</p>
+      </a>
+      
+      <a href="#rias-wealth" class="tile">
+        <h2>RIAs & Wealth</h2>
+        <p><strong>Operations Optimization</strong><br>OMS/EMS strategy, vendor integration, compliance workflows</p>
+      </a>
     </div>
-  </header>
-
-  <div class="container">
-    <h2>We help RIAs and wealth firms streamline operations, integrate vendors, and build compliant, scalable workflows.</h2>
-    
-    <p>From order management to client reporting, we turn fragmented processes into efficient, technology-driven operations that free your team to focus on client relationships.</p>
-
-    <h3>Typical Engagements</h3>
-    <ul>
-      <li>OMS/EMS strategy and implementation (Charles River, Eze, Bloomberg, etc.)</li>
-      <li>Vendor integration and data flow automation</li>
-      <li>Compliance workflows and regulatory reporting modernization</li>
-      <li>Client onboarding and portfolio management platform optimization</li>
-      <li>Cloud migration and modern data architecture</li>
-    </ul>
-
-    <h3>Results You Can Expect</h3>
-    <ul>
-      <li>Trade &amp; settlement processing time cut by 50%+</li>
-      <li>Compliance exceptions reduced significantly</li>
-      <li>Unified view of client portfolios across systems</li>
-      <li>Scalable operations ready for AUM growth</li>
-    </ul>
-
-    <p style="text-align:center; margin:60px 0;">
-      <a href="contact.html" style="background:#0a2540; color:white; padding:18px 45px; border-radius:8px; font-size:1.2rem; text-decoration:none;">Book a 30-minute strategy call for RIAs &amp; Wealth</a>
-    </p>
   </div>
 
-  <footer style="background:#0a2540; color:white; text-align:center; padding:40px 20px;">
-    <p>Kinetic Consulting • Matthew Warner • <a href="mailto:mwarner@optonline.net" style="color:#00b4d8;">mwarner@optonline.net</a> • 203-400-0006</p>
+  <!-- ==================== ASSET MANAGERS SECTION ==================== -->
+  <section id="asset-managers" class="section">
+    <div class="container">
+      <h2>Asset Managers</h2>
+      <p><strong>Platform Modernization & IBOR Strategy</strong></p>
+      <a href="#" class="back-link">← Back to Home</a>
+
+      <h3>We help Asset Managers modernize their data architecture and investment book of record (IBOR).</h3>
+      <p>Whether you're migrating from a legacy system, implementing a new front-to-back platform, or simply trying to get clean, real-time data across risk, performance, and reporting teams — we deliver production-ready solutions fast.</p>
+
+      <h4>Typical Engagements</h4>
+      <ul>
+        <li>Full IBOR transformation and data governance framework</li>
+        <li>SimCorp Dimension, BlackRock Aladdin, or Eagle PACE implementations & optimizations</li>
+        <li>Golden source data strategy and reconciliation automation</li>
+        <li>Risk and performance alignment (attribution, stress testing, regulatory reporting)</li>
+        <li>Cloud migration and modern data platform architecture (Snowflake, Databricks, AWS)</li>
+      </ul>
+
+      <h4>Results You Can Expect</h4>
+      <ul>
+        <li>Single source of truth for positions, cash, and transactions</li>
+        <li>60-70% reduction in manual data processes</li>
+        <li>Audit-ready documentation and controls</li>
+        <li>Faster month-end and client reporting</li>
+      </ul>
+
+      <p style="text-align:center; margin:60px 0;">
+        <a href="#cta" style="background:var(--dark); color:white; padding:16px 40px; border-radius:8px; font-size:1.2rem;">Book a 30-minute strategy call</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== INSURERS SECTION ==================== -->
+  <section id="insurers" class="section">
+    <div class="section-header" style="background-image: url('insurers-bg.jpg');">
+      <div class="container">
+        <a href="#" class="back-link">← Back to Home</a>
+        <h1>Insurers</h1>
+        <p style="font-size:2rem;">Pricing & Accounting</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>We deliver production-ready pricing controls, PLM implementations, and seamless portfolio onboarding for insurers.</h2>
+      <p>Our clients move from fragmented spreadsheets and legacy systems to clean, automated, audit-ready processes — all while maintaining full regulatory compliance.</p>
+
+      <h3>Typical Engagements</h3>
+      <ul>
+        <li>Pricing engine modernization and real-time controls</li>
+        <li>Policy Lifecycle Management (PLM) system implementation and optimization</li>
+        <li>Portfolio onboarding automation and data reconciliation</li>
+        <li>Accounting & reporting alignment across statutory, GAAP, and IFRS</li>
+        <li>Integration with SimCorp, Aladdin, Eagle, or custom platforms</li>
+      </ul>
+
+      <h3>Results You Can Expect</h3>
+      <ul>
+        <li>Manual pricing & valuation work reduced by 60-70%</li>
+        <li>Faster month-end close and board reporting</li>
+        <li>Single source of truth for positions, cash, and risk</li>
+        <li>Audit-ready documentation and controls built in</li>
+      </ul>
+
+      <p style="text-align:center; margin:60px 0;">
+        <a href="#cta" style="background:var(--dark); color:white; padding:18px 45px; border-radius:8px; font-size:1.2rem;">Book a 30-minute strategy call for Insurers</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== RIAs & WEALTH SECTION ==================== -->
+  <section id="rias-wealth" class="section">
+    <div class="section-header" style="background-image: url('rias-wealth-bg.jpg');">
+      <div class="container">
+        <a href="#" class="back-link">← Back to Home</a>
+        <h1>RIAs & Wealth</h1>
+        <p style="font-size:2rem;">Operations Optimization</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>We help RIAs and wealth firms streamline operations, integrate vendors, and build compliant, scalable workflows.</h2>
+      <p>From order management to client reporting, we turn fragmented processes into efficient, technology-driven operations that free your team to focus on client relationships.</p>
+
+      <h3>Typical Engagements</h3>
+      <ul>
+        <li>OMS/EMS strategy and implementation (Charles River, Eze, Bloomberg, etc.)</li>
+        <li>Vendor integration and data flow automation</li>
+        <li>Compliance workflows and regulatory reporting modernization</li>
+        <li>Client onboarding and portfolio management platform optimization</li>
+        <li>Cloud migration and modern data architecture</li>
+      </ul>
+
+      <h3>Results You Can Expect</h3>
+      <ul>
+        <li>Trade & settlement processing time cut by 50%+</li>
+        <li>Compliance exceptions reduced significantly</li>
+        <li>Unified view of client portfolios across systems</li>
+        <li>Scalable operations ready for AUM growth</li>
+      </ul>
+
+      <p style="text-align:center; margin:60px 0;">
+        <a href="#cta" style="background:var(--dark); color:white; padding:18px 45px; border-radius:8px; font-size:1.2rem;">Book a 30-minute strategy call for RIAs & Wealth</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== CTA / SCHEDULE SECTION ==================== -->
+  <section id="cta" class="cta">
+    <div class="container">
+      <h2>30-Minute Strategy Call</h2>
+      <p style="font-size:1.4rem; margin:30px 0;">Quick fit check with concrete ideas for your situation</p>
+      <p style="font-size:1.3rem; margin-bottom:40px;">
+        Email: <a href="mailto:mwarner@optonline.net">mwarner@optonline.net</a><br>
+        Phone: 203-400-0006
+      </p>
+      <p>(You can replace this area later with a Calendly embed or contact form)</p>
+    </div>
+  </section>
+
+  <!-- ==================== RESULTS / CASE STUDIES TEASER ==================== -->
+  <section class="results">
+    <div class="container">
+      <h2>Proven Results</h2>
+      <p style="font-size:1.3rem; max-width:800px; margin:30px auto;">
+        Impact from recent engagements across asset managers, insurers, and wealth platforms
+      </p>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:50px; margin-top:60px;">
+        <div>
+          <strong>Typical Project Allocation</strong><br>
+          Strategy 30% • Data Mapping 40% • Execution 30%
+        </div>
+        <div>
+          <strong>Operational Improvements</strong><br>
+          Manual Work ↓ 65%<br>
+          Data Exceptions ↓ 52%<br>
+          Reporting Speed ↑ 42%<br>
+          User Confidence ↑ 78%
+        </div>
+      </div>
+
+      <p style="margin-top:60px; font-size:1.3rem;">
+        → Full case studies coming soon — contact us to discuss similar engagements
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <p>Kinetic Consulting • Greenwich, CT</p>
+    <p>Helping investment firms turn complex data challenges into competitive advantage.</p>
+    <p>Matthew Warner • <a href="mailto:mwarner@optonline.net">mwarner@optonline.net</a> • 203-400-0006</p>
   </footer>
+
 </body>
 </html>

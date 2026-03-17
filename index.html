@@ -7,20 +7,16 @@
   
   <style>
     :root {
-      --dark:     #1a2b44;      /* Dark navy/charcoal for text */
-      --accent:   #00b4d8;      /* Teal/cyan for CTAs & links */
-      --light:    #f8f9fc;      /* Body bg */
+      --dark:     #1a2b44;
+      --accent:   #00b4d8;
+      --light:    #f8f9fc;
       --gray:     #e9ecef;
       --text:     #1a2b44;
       --hero-gradient: linear-gradient(135deg, #e6f0fa 0%, #d9e8f5 100%);
-      --overlay-ultralight: rgba(26,43,68,0.18);  /* Ultra-light overlay for maximum brightness */
+      --overlay-ultralight: rgba(26,43,68,0.18);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: system-ui, -apple-system, sans-serif;
@@ -30,13 +26,8 @@
       scroll-behavior: smooth;
     }
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-    /* Hero / Landing Header */
     header.hero {
       background: var(--hero-gradient);
       color: var(--dark);
@@ -45,32 +36,16 @@
       border-bottom: 1px solid #d0e0f0;
     }
 
-    h1 {
-      font-size: clamp(2.8rem, 7vw, 4.2rem);
-      margin-bottom: 0.4rem;
-    }
+    h1 { font-size: clamp(2.8rem, 7vw, 4.2rem); margin-bottom: 0.4rem; }
 
-    .tagline {
-      font-size: clamp(1.4rem, 4vw, 1.8rem);
-      margin: 1rem 0 1.5rem;
-    }
+    .tagline { font-size: clamp(1.4rem, 4vw, 1.8rem); margin: 1rem 0 1.5rem; }
 
-    .contact-bar {
-      font-size: 1.15rem;
-      margin-top: 1.5rem;
-    }
+    .contact-bar { font-size: 1.15rem; margin-top: 1.5rem; }
 
-    .contact-bar a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
-    }
+    .contact-bar a { color: var(--accent); text-decoration: none; font-weight: 500; }
 
-    .contact-bar a:hover {
-      text-decoration: underline;
-    }
+    .contact-bar a:hover { text-decoration: underline; }
 
-    /* Tiles */
     .tiles {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -97,16 +72,9 @@
       border-color: var(--accent);
     }
 
-    .tile h2 {
-      color: var(--dark);
-      margin-bottom: 1rem;
-      font-size: 1.9rem;
-    }
+    .tile h2 { color: var(--dark); margin-bottom: 1rem; font-size: 1.9rem; }
 
-    /* Sections */
-    section {
-      padding: 6rem 0;
-    }
+    section { padding: 6rem 0; }
 
     .section-hero {
       min-height: 70vh;
@@ -127,10 +95,7 @@
       z-index: 1;
     }
 
-    .section-hero > .container {
-      position: relative;
-      z-index: 2;
-    }
+    .section-hero > .container { position: relative; z-index: 2; }
 
     .back-to-top {
       display: inline-block;
@@ -140,26 +105,13 @@
       text-decoration: none;
     }
 
-    .back-to-top:hover {
-      text-decoration: underline;
-    }
+    .back-to-top:hover { text-decoration: underline; }
 
-    h2.section-title {
-      font-size: clamp(2.4rem, 6vw, 3.6rem);
-      margin-bottom: 0.8rem;
-    }
+    h2.section-title { font-size: clamp(2.4rem, 6vw, 3.6rem); margin-bottom: 0.8rem; }
 
-    h3 {
-      color: var(--dark);
-      margin: 2.5rem 0 1rem;
-      font-size: 1.9rem;
-    }
+    h3 { color: var(--dark); margin: 2.5rem 0 1rem; font-size: 1.9rem; }
 
-    ul.benefits {
-      list-style: none;
-      font-size: 1.15rem;
-      margin: 1.5rem 0;
-    }
+    ul.benefits { list-style: none; font-size: 1.15rem; margin: 1.5rem 0; }
 
     ul.benefits li {
       margin: 0.9rem 0;
@@ -175,7 +127,6 @@
       font-weight: bold;
     }
 
-    /* CTA */
     #cta {
       background: var(--dark);
       color: white;
@@ -183,11 +134,7 @@
       padding: 9rem 20px;
     }
 
-    #cta h2 {
-      color: white;
-      font-size: 3rem;
-      margin-bottom: 1.5rem;
-    }
+    #cta h2 { color: white; font-size: 3rem; margin-bottom: 1.5rem; }
 
     .big-cta-btn {
       display: inline-block;
@@ -207,11 +154,7 @@
       transform: translateY(-3px);
     }
 
-    /* Results */
-    #results {
-      background: var(--gray);
-      text-align: center;
-    }
+    #results { background: var(--gray); text-align: center; }
 
     .stats-grid {
       display: grid;
@@ -220,9 +163,7 @@
       margin: 4rem 0 2rem;
     }
 
-    .stat-block {
-      font-size: 1.25rem;
-    }
+    .stat-block { font-size: 1.25rem; }
 
     .stat-block strong {
       display: block;
@@ -231,7 +172,6 @@
       margin-bottom: 0.6rem;
     }
 
-    /* Footer */
     footer {
       background: var(--dark);
       color: white;
@@ -240,9 +180,7 @@
       font-size: 1.05rem;
     }
 
-    footer a {
-      color: var(--accent);
-    }
+    footer a { color: var(--accent); }
 
     @media (max-width: 640px) {
       header.hero { padding: 80px 15px 60px; }
@@ -253,7 +191,7 @@
 </head>
 <body>
 
-  <!-- HERO / LANDING -->
+  <!-- Hero / Landing -->
   <header class="hero">
     <div class="container">
       <h1>Kinetic Consulting</h1>
@@ -297,7 +235,7 @@
     </div>
   </div>
 
-  <!-- ASSET MANAGERS -->
+  <!-- Asset Managers -->
   <section id="asset-managers">
     <div class="container">
       <a href="#" class="back-to-top" style="color: var(--accent);">← Back to Home</a>
@@ -330,8 +268,8 @@
     </div>
   </section>
 
-  <!-- INSURERS - Very light blue-toned realistic team photo -->
-  <section id="insurers" class="section-hero" style="background-image: url('https://media.licdn.com/dms/image/v2/D4D12AQEBOqlNxUzZxg/article-cover_image-shrink_720_1280/B4DZiYOjCYHwAM-/0/1754900608015?e=2147483647&v=beta&t=yHw9zvXlsXoVq7A_es_CmEmlKr9WbSTD-guQmZL8FrE');">
+  <!-- Insurers - Photorealistic light blue-toned team meeting -->
+  <section id="insurers" class="section-hero" style="background-image: url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
     <div class="container">
       <a href="#" class="back-to-top">← Back to Home</a>
       <h2 class="section-title">Insurers</h2>
@@ -363,8 +301,8 @@
     </div>
   </section>
 
-  <!-- RIAs & WEALTH - Very light green/mint toned realistic team photo -->
-  <section id="rias-wealth" class="section-hero" style="background-image: url('https://telefonicatech.uk/wp-content/uploads/AdobeStock_420456291-scaled.jpeg.webp');">
+  <!-- RIAs & Wealth - Photorealistic light green-toned team discussion -->
+  <section id="rias-wealth" class="section-hero" style="background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
     <div class="container">
       <a href="#" class="back-to-top">← Back to Home</a>
       <h2 class="section-title">RIAs & Wealth</h2>
@@ -415,7 +353,7 @@
     </div>
   </section>
 
-  <!-- RESULTS -->
+  <!-- Results -->
   <section id="results">
     <div class="container">
       <h2>Proven Results</h2>
@@ -442,7 +380,7 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- Footer -->
   <footer>
     <div class="container">
       <p>Kinetic Consulting • Greenwich, CT</p>

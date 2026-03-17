@@ -7,11 +7,12 @@
   
   <style>
     :root {
-      --dark:    #0a2540;
-      --accent:  #00b4d8;
-      --light:   #f8f9fa;
-      --gray:    #f1f3f5;
-      --text:    #333;
+      --dark:     #1a2b44;      /* Dark navy/charcoal for text & accents */
+      --accent:   #00b4d8;      /* Teal/cyan for CTAs & links */
+      --light:    #f8f9fc;      /* Very light gray-blue for main bg */
+      --gray:     #e9ecef;      /* Subtle section bg */
+      --text:     #1a2b44;
+      --hero-gradient: linear-gradient(135deg, #e6f0fa 0%, #d9e8f5 100%);
     }
 
     * {
@@ -24,7 +25,7 @@
       font-family: system-ui, -apple-system, sans-serif;
       line-height: 1.6;
       color: var(--text);
-      background: #fff;
+      background: var(--light);
       scroll-behavior: smooth;
     }
 
@@ -34,12 +35,13 @@
       padding: 0 20px;
     }
 
-    /* Header / Hero */
+    /* Hero / Landing Header */
     header.hero {
-      background: var(--dark);
-      color: white;
+      background: var(--hero-gradient);
+      color: var(--dark);
       text-align: center;
       padding: 100px 20px 80px;
+      border-bottom: 1px solid #d0e0f0;
     }
 
     h1 {
@@ -49,7 +51,6 @@
 
     .tagline {
       font-size: clamp(1.4rem, 4vw, 1.8rem);
-      opacity: 0.9;
       margin: 1rem 0 1.5rem;
     }
 
@@ -77,8 +78,8 @@
     }
 
     .tile {
-      background: var(--light);
-      border: 2px solid var(--dark);
+      background: white;
+      border: 2px solid #d0e0f0;
       border-radius: 12px;
       padding: 2.5rem 2rem;
       text-align: center;
@@ -86,11 +87,12 @@
       text-decoration: none;
       color: inherit;
       display: block;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     }
 
     .tile:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 22px 44px rgba(10,37,64,0.14);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.1);
       border-color: var(--accent);
     }
 
@@ -100,7 +102,7 @@
       font-size: 1.9rem;
     }
 
-    /* Section styling */
+    /* Sections */
     section {
       padding: 6rem 0;
     }
@@ -120,7 +122,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(10,37,64,0.88), rgba(10,37,64,0.92));
+      background: linear-gradient(to bottom, rgba(26,43,68,0.65), rgba(26,43,68,0.75));  /* Darker overlay for contrast */
       z-index: 1;
     }
 
@@ -268,11 +270,11 @@
   </header>
 
   <div class="container">
-    <h2 style="text-align:center; margin:4rem 0 2rem; font-size:2.4rem;">
+    <h2 style="text-align:center; margin:4rem 0 2rem; font-size:2.4rem; color: var(--dark);">
       Client-centric consulting · Production-ready outcomes
     </h2>
 
-    <p style="text-align:center; font-size:1.3rem; max-width:880px; margin:0 auto 4rem;">
+    <p style="text-align:center; font-size:1.3rem; max-width:880px; margin:0 auto 4rem; color: var(--dark);">
       Untangle your data, modernize your IBOR, and make platforms like SimCorp, Aladdin, and Eagle work for your teams.
     </p>
 
@@ -297,7 +299,7 @@
   <!-- ASSET MANAGERS -->
   <section id="asset-managers">
     <div class="container">
-      <a href="#" class="back-to-top">← Back to Home</a>
+      <a href="#" class="back-to-top" style="color: var(--accent);">← Back to Home</a>
       <h2 class="section-title">Asset Managers</h2>
       <h3>Platform Modernization & IBOR Strategy</h3>
 
@@ -327,7 +329,7 @@
     </div>
   </section>
 
-  <!-- INSURERS -->
+  <!-- INSURERS (with background image) -->
   <section id="insurers" class="section-hero" style="background-image: url('insurers-bg.jpg');">
     <div class="container">
       <a href="#" class="back-to-top">← Back to Home</a>
@@ -360,7 +362,7 @@
     </div>
   </section>
 
-  <!-- RIAs & WEALTH -->
+  <!-- RIAs & WEALTH (with background image) -->
   <section id="rias-wealth" class="section-hero" style="background-image: url('rias-wealth-bg.jpg');">
     <div class="container">
       <a href="#" class="back-to-top">← Back to Home</a>

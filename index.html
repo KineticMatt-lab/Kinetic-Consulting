@@ -9,20 +9,16 @@
 
   <style>
     :root {
-      --navy:    #0d1b2e;
-      --navy2:   #152238;
-      --gold:    #c9a84c;
-      --gold2:   #e8c46a;
-      --cream:   #f5f0e8;
-      --mist:    #eef2f7;
-      --slate:   #4a5568;
-      --rule:    rgba(201,168,76,0.3);
+      --navy:  #0d1b2e;
+      --navy2: #152238;
+      --gold:  #c9a84c;
+      --gold2: #e8c46a;
+      --mist:  #eef2f7;
+      --slate: #4a5568;
+      --rule:  rgba(201,168,76,0.3);
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'DM Sans', sans-serif;
       color: var(--navy);
@@ -31,780 +27,322 @@
       overflow-x: hidden;
     }
 
-    /* ─── NAV ─── */
+    /* NAV */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
       padding: 1.1rem 3rem;
       background: rgba(13,27,46,0.96);
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(201,168,76,0.2);
     }
-
     .nav-logo {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.45rem;
-      font-weight: 500;
-      color: #fff;
-      letter-spacing: 0.04em;
-      text-decoration: none;
+      font-size: 2rem; font-weight: 500;
+      color: #fff; letter-spacing: 0.04em; text-decoration: none;
     }
-
     .nav-logo span { color: var(--gold); }
-
     .nav-links { display: flex; gap: 2.2rem; list-style: none; }
-
     .nav-links a {
-      color: rgba(255,255,255,0.7);
-      text-decoration: none;
-      font-size: 0.82rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-weight: 400;
+      color: rgba(255,255,255,0.65); text-decoration: none;
+      font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
       transition: color 0.2s;
     }
-
     .nav-links a:hover { color: var(--gold); }
-
     .nav-cta {
-      background: transparent;
-      border: 1px solid var(--gold);
-      color: var(--gold) !important;
-      padding: 0.45rem 1.2rem;
-      border-radius: 2px;
-      font-size: 0.78rem !important;
-      letter-spacing: 0.12em;
+      border: 1px solid var(--gold); color: var(--gold) !important;
+      padding: 0.45rem 1.2rem; border-radius: 2px;
+      font-size: 0.78rem !important; letter-spacing: 0.12em;
       transition: all 0.25s !important;
     }
+    .nav-cta:hover { background: var(--gold) !important; color: var(--navy) !important; }
 
-    .nav-cta:hover {
-      background: var(--gold) !important;
-      color: var(--navy) !important;
-    }
-
-    /* ─── HERO ─── */
+    /* HERO */
     .hero {
-      min-height: 100vh;
-      background: var(--navy);
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      padding: 8rem 3rem 6rem;
+      min-height: 100vh; background: var(--navy);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding: 8rem 3rem 7rem;
+    }
+    #hero-canvas {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      opacity: 0.55; pointer-events: none;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg,rgba(13,27,46,0.88) 0%,rgba(13,27,46,0.50) 55%,rgba(13,27,46,0.82) 100%);
+      pointer-events: none;
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 70% 60% at 80% 50%, rgba(201,168,76,0.07) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 40% at 10% 80%, rgba(21,34,56,0.8) 0%, transparent 60%);
+    /* Ticker tape */
+    .ticker-tape {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: rgba(201,168,76,0.07);
+      border-top: 1px solid rgba(201,168,76,0.18);
+      padding: 0.55rem 0; overflow: hidden; white-space: nowrap; z-index: 3;
     }
-
-    .hero-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 1100px;
-      margin: 0 auto;
-      width: 100%;
-    }
+    .ticker-inner { display: inline-block; animation: tickerScroll 40s linear infinite; }
+    .tick-item { display: inline-block; margin: 0 1.8rem; font-size: 0.7rem; letter-spacing: 0.08em; font-weight: 500; }
+    .tick-sym { color: rgba(255,255,255,0.45); margin-right: 0.35rem; }
+    .tick-val { color: rgba(255,255,255,0.85); margin-right: 0.25rem; }
+    .tick-up   { color: #4ade80; }
+    .tick-down { color: #f87171; }
+    @keyframes tickerScroll { from { transform:translateX(0); } to { transform:translateX(-50%); } }
 
     .hero-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeUp 0.7s 0.2s forwards;
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;
+      opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
     }
-
-    .hero-eyebrow::before {
-      content: '';
-      width: 40px;
-      height: 1px;
-      background: var(--gold);
-    }
-
-    .hero-eyebrow span {
-      font-size: 0.75rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 400;
-    }
-
+    .hero-eyebrow::before { content:''; width:40px; height:1px; background:var(--gold); }
+    .hero-eyebrow span { font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); }
     .hero h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.8rem, 8vw, 7rem);
-      font-weight: 300;
-      color: #fff;
-      line-height: 1.05;
-      margin-bottom: 1.8rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.35s forwards;
+      font-size: clamp(3.8rem,8vw,7rem); font-weight: 300;
+      color: #fff; line-height: 1.05; margin-bottom: 1.8rem;
+      opacity: 0; animation: fadeUp 0.8s 0.35s forwards;
     }
-
-    .hero h1 em {
-      font-style: italic;
-      color: var(--gold);
-    }
-
+    .hero h1 em { font-style: italic; color: var(--gold); }
     .hero-sub {
-      font-size: 1.05rem;
-      color: rgba(255,255,255,0.6);
-      max-width: 520px;
-      line-height: 1.8;
-      margin-bottom: 3rem;
-      font-weight: 300;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.5s forwards;
+      font-size: 1.05rem; color: rgba(255,255,255,0.6);
+      max-width: 520px; line-height: 1.8; margin-bottom: 3rem; font-weight: 300;
+      opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
     }
-
     .hero-contact {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.5rem 2rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.65s forwards;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 2rem;
+      opacity: 0; animation: fadeUp 0.8s 0.65s forwards;
     }
-
     .hero-contact .led-by {
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
-      width: 100%;
-      margin-bottom: 0.5rem;
+      font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4); width: 100%; margin-bottom: 0.4rem;
     }
-
     .hero-contact a, .hero-contact span {
-      color: rgba(255,255,255,0.75);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s;
+      color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.9rem; transition: color 0.2s;
     }
-
     .hero-contact a:hover { color: var(--gold); }
-
-    .hero-contact .divider {
-      width: 1px;
-      height: 14px;
-      background: rgba(255,255,255,0.2);
-    }
-
+    .hero-contact .divider { width:1px; height:14px; background:rgba(255,255,255,0.2); }
     .hero-actions {
-      display: flex;
-      gap: 1rem;
-      margin-top: 3rem;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.8s forwards;
+      display: flex; gap: 1rem; margin-top: 3rem; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
     }
-
     .btn-primary {
-      display: inline-block;
-      background: var(--gold);
-      color: var(--navy);
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.9rem 2.4rem;
-      text-decoration: none;
-      border-radius: 2px;
-      transition: all 0.25s;
+      display: inline-block; background: var(--gold); color: var(--navy);
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.9rem 2.4rem; text-decoration: none; border-radius: 2px; transition: all 0.25s;
     }
-
-    .btn-primary:hover {
-      background: var(--gold2);
-      transform: translateY(-2px);
-    }
-
+    .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
     .btn-ghost {
-      display: inline-block;
-      border: 1px solid rgba(255,255,255,0.25);
-      color: rgba(255,255,255,0.8);
-      font-size: 0.8rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.9rem 2.4rem;
-      text-decoration: none;
-      border-radius: 2px;
-      transition: all 0.25s;
+      display: inline-block; border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.8); font-size: 0.8rem; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.9rem 2.4rem;
+      text-decoration: none; border-radius: 2px; transition: all 0.25s;
     }
+    .btn-ghost:hover { border-color:var(--gold); color:var(--gold); }
 
-    .btn-ghost:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-    }
+    /* MARQUEE */
+    .marquee-strip { background: var(--gold); padding: 0.7rem 0; overflow: hidden; white-space: nowrap; }
+    .marquee-track { display: inline-block; animation: marquee 28s linear infinite; }
+    .marquee-track span { font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--navy); font-weight:500; margin:0 2.5rem; }
+    .marquee-track span::before { content:'◆'; margin-right:2.5rem; font-size:0.5rem; vertical-align:middle; }
+    @keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
 
-    /* ─── MARQUEE STRIP ─── */
-    .marquee-strip {
-      background: var(--gold);
-      padding: 0.7rem 0;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-
-    .marquee-track {
-      display: inline-block;
-      animation: marquee 28s linear infinite;
-    }
-
-    .marquee-track span {
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--navy);
-      font-weight: 500;
-      margin: 0 2.5rem;
-    }
-
-    .marquee-track span::before {
-      content: '◆';
-      margin-right: 2.5rem;
-      font-size: 0.5rem;
-      vertical-align: middle;
-    }
-
-    /* ─── INTRO BAND ─── */
-    .intro-band {
-      background: var(--mist);
-      padding: 6rem 3rem;
-    }
-
+    /* INTRO (collab canvas) */
+    .intro-band { background: var(--navy); padding: 7rem 3rem; position: relative; overflow: hidden; }
+    #collab-canvas { position:absolute; inset:0; width:100%; height:100%; opacity:0.4; pointer-events:none; }
     .intro-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 6rem;
-      align-items: start;
+      position: relative; z-index: 2;
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; align-items: start;
     }
-
     .intro-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin-bottom: 1.2rem;
+      font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase;
+      color:var(--gold); font-weight:500; display:flex; align-items:center; gap:0.8rem; margin-bottom:1.2rem;
     }
-
-    .intro-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--rule);
-      max-width: 60px;
-    }
-
+    .intro-label::after { content:''; flex:1; height:1px; background:var(--rule); max-width:60px; }
     .intro-heading {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 4vw, 3.2rem);
-      font-weight: 400;
-      color: var(--navy);
-      line-height: 1.2;
-      position: sticky;
-      top: 8rem;
+      font-size: clamp(2.2rem,4vw,3.2rem); font-weight: 400;
+      color: #fff; line-height: 1.2; position: sticky; top: 8rem;
     }
+    .intro-body p { font-size:1rem; color:rgba(255,255,255,0.55); margin-bottom:1.4rem; font-weight:300; line-height:1.85; }
 
-    .intro-body p {
-      font-size: 1rem;
-      color: var(--slate);
-      margin-bottom: 1.4rem;
-      font-weight: 300;
-      line-height: 1.85;
-    }
-
-    /* ─── SERVICE TILES ─── */
-    .services-section {
-      padding: 6rem 3rem;
-      background: #fff;
-    }
-
-    .section-header {
-      max-width: 1100px;
-      margin: 0 auto 4rem;
-    }
-
+    /* SERVICE TILES */
+    .services-section { padding: 6rem 3rem; background: #fff; }
+    .section-header { max-width: 1100px; margin: 0 auto 4rem; }
     .section-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin-bottom: 1rem;
+      font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase;
+      color:var(--gold); font-weight:500; display:flex; align-items:center; gap:0.8rem; margin-bottom:1rem;
     }
-
-    .section-label::before {
-      content: '';
-      width: 28px;
-      height: 1px;
-      background: var(--gold);
-    }
-
-    .section-heading {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 400;
-      color: var(--navy);
-      line-height: 1.15;
-    }
-
-    .tiles-grid {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-    }
-
+    .section-label::before { content:''; width:28px; height:1px; background:var(--gold); }
+    .section-heading { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,3rem); font-weight:400; color:var(--navy); line-height:1.15; }
+    .tiles-grid { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
     .tile-card {
-      background: var(--navy);
-      padding: 3rem 2.5rem 3.5rem;
-      text-decoration: none;
-      color: #fff;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.3s;
-      display: block;
+      background: var(--navy); padding: 3rem 2.5rem 3.5rem;
+      text-decoration: none; color: #fff; position: relative; overflow: hidden;
+      transition: background 0.3s; display: block;
     }
-
     .tile-card:nth-child(2) { background: var(--navy2); }
     .tile-card:nth-child(3) { background: #1e3050; }
-
-    .tile-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--gold);
-      transform: scaleX(0);
-      transition: transform 0.3s;
-    }
-
-    .tile-card:hover::after { transform: scaleX(1); }
+    .tile-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:var(--gold); transform:scaleX(0); transition:transform 0.3s; }
+    .tile-card:hover::after { transform:scaleX(1); }
     .tile-card:hover { background: #0a1525; }
+    .tile-num { font-family:'Cormorant Garamond',serif; font-size:4rem; font-weight:300; color:rgba(201,168,76,0.15); line-height:1; margin-bottom:1.5rem; display:block; }
+    .tile-card h2 { font-family:'Cormorant Garamond',serif; font-size:1.9rem; font-weight:400; margin-bottom:0.6rem; color:#fff; }
+    .tile-sub { font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:1.2rem; display:block; }
+    .tile-card p { font-size:0.88rem; color:rgba(255,255,255,0.55); line-height:1.8; font-weight:300; }
+    .tile-arrow { display:inline-flex; align-items:center; gap:0.5rem; margin-top:2rem; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .tile-arrow::after { content:'→'; transition:transform 0.2s; }
+    .tile-card:hover .tile-arrow::after { transform:translateX(4px); }
 
-    .tile-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 4rem;
-      font-weight: 300;
-      color: rgba(201,168,76,0.15);
-      line-height: 1;
-      margin-bottom: 1.5rem;
-      display: block;
-    }
-
-    .tile-card h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.9rem;
-      font-weight: 400;
-      margin-bottom: 0.6rem;
-      color: #fff;
-    }
-
-    .tile-sub {
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.2rem;
-      display: block;
-    }
-
-    .tile-card p {
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.55);
-      line-height: 1.8;
-      font-weight: 300;
-    }
-
-    .tile-arrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 2rem;
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    .tile-arrow::after {
-      content: '→';
-      transition: transform 0.2s;
-    }
-
-    .tile-card:hover .tile-arrow::after { transform: translateX(4px); }
-
-    /* ─── SERVICE DETAIL SECTIONS ─── */
-    .detail-section {
-      padding: 8rem 3rem;
-      border-top: 1px solid var(--mist);
-    }
-
+    /* DETAIL SECTIONS */
+    .detail-section { padding: 8rem 3rem; border-top: 1px solid var(--mist); }
     .detail-section:nth-of-type(even) { background: var(--mist); }
+    .detail-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1.6fr; gap:8rem; align-items:start; }
+    .detail-sticky { position:sticky; top:8rem; }
+    .detail-num { font-family:'Cormorant Garamond',serif; font-size:6rem; font-weight:300; color:rgba(201,168,76,0.12); line-height:1; display:block; margin-bottom:-1rem; }
+    .detail-section h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,4vw,3.2rem); font-weight:400; color:var(--navy); line-height:1.15; margin-bottom:0.5rem; }
+    .detail-sub { font-size:0.75rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:1.5rem; display:block; }
+    .detail-intro { font-size:1rem; color:var(--slate); line-height:1.85; font-weight:300; margin-bottom:2.5rem; }
+    .detail-cta { display:inline-block; border:1px solid var(--navy); color:var(--navy); font-size:0.75rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; padding:0.75rem 1.8rem; text-decoration:none; border-radius:2px; transition:all 0.25s; }
+    .detail-cta:hover { background:var(--navy); color:#fff; }
+    .detail-content h3 { font-family:'Cormorant Garamond',serif; font-size:1.45rem; font-weight:500; color:var(--navy); margin:2.5rem 0 1.2rem; padding-bottom:0.6rem; border-bottom:1px solid var(--rule); }
+    .detail-content h3:first-child { margin-top:0; }
+    .benefit-list { list-style:none; }
+    .benefit-list li { font-size:0.92rem; color:var(--slate); padding:0.75rem 0 0.75rem 1.6rem; position:relative; border-bottom:1px solid rgba(0,0,0,0.05); font-weight:300; line-height:1.6; }
+    .benefit-list li::before { content:''; position:absolute; left:0; top:50%; width:8px; height:1px; background:var(--gold); }
 
-    .detail-inner {
-      max-width: 1100px;
-      margin: 0 auto;
+    /* STATS */
+    .stats-section { background: var(--navy); padding: 8rem 3rem; }
+    .stats-inner { max-width:1100px; margin:0 auto; }
+    .stats-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:5rem; flex-wrap:wrap; gap:2rem; }
+    .stats-grid { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid rgba(201,168,76,0.2); }
+    .stat-item { padding:3rem 2rem 3rem 0; border-right:1px solid rgba(201,168,76,0.1); }
+    .stat-item:last-child { border-right:none; }
+    .stat-item:not(:first-child) { padding-left:2rem; }
+    .stat-number { font-family:'Cormorant Garamond',serif; font-size:clamp(3rem,5vw,4.5rem); font-weight:300; color:var(--gold); line-height:1; display:block; margin-bottom:0.5rem; }
+    .stat-label { font-size:0.8rem; color:rgba(255,255,255,0.5); font-weight:300; line-height:1.5; }
+
+    /* CTA */
+    .cta-section { padding:10rem 3rem; background:#fff; text-align:center; }
+    .cta-inner { max-width:700px; margin:0 auto; }
+    .cta-section h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(2.5rem,5vw,4rem); font-weight:400; color:var(--navy); line-height:1.15; margin-bottom:1.5rem; }
+    .cta-section p { font-size:1rem; color:var(--slate); font-weight:300; line-height:1.85; margin-bottom:3rem; }
+    .cta-contact-block { display:flex; justify-content:center; align-items:center; gap:2.5rem; flex-wrap:wrap; margin-top:3rem; padding-top:3rem; border-top:1px solid var(--rule); }
+    .cta-contact-item { text-align:center; }
+    .ci-label { font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:0.3rem; }
+    .cta-contact-item a, .cta-contact-item span { font-size:0.95rem; color:var(--navy); text-decoration:none; }
+    .cta-contact-item a:hover { color:var(--gold); }
+
+    /* FOOTER */
+    footer { background:var(--navy); padding:4rem 3rem; border-top:1px solid rgba(201,168,76,0.15); }
+    .footer-inner { max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.5rem; }
+    .footer-brand { font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:#fff; }
+    .footer-brand span { color:var(--gold); }
+    .footer-tagline { font-size:0.8rem; color:rgba(255,255,255,0.35); margin-top:0.3rem; font-weight:300; }
+    .footer-links { display:flex; gap:2rem; list-style:none; flex-wrap:wrap; }
+    .footer-links a { font-size:0.78rem; color:rgba(255,255,255,0.45); text-decoration:none; letter-spacing:0.06em; transition:color 0.2s; }
+    .footer-links a:hover { color:var(--gold); }
+
+    .back-nav { display:inline-flex; align-items:center; gap:0.5rem; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); text-decoration:none; margin-bottom:3rem; transition:gap 0.2s; }
+    .back-nav:hover { gap:0.8rem; }
+
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+
+    /* HERO TABS — right side vertical tab panel */
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1100px; margin: 0 auto; width: 100%;
       display: grid;
-      grid-template-columns: 1fr 1.6fr;
-      gap: 8rem;
-      align-items: start;
-    }
-
-    .detail-sticky {
-      position: sticky;
-      top: 8rem;
-    }
-
-    .detail-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 6rem;
-      font-weight: 300;
-      color: rgba(201,168,76,0.12);
-      line-height: 1;
-      display: block;
-      margin-bottom: -1rem;
-    }
-
-    .detail-section h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 4vw, 3.2rem);
-      font-weight: 400;
-      color: var(--navy);
-      line-height: 1.15;
-      margin-bottom: 0.5rem;
-    }
-
-    .detail-sub {
-      font-size: 0.75rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.5rem;
-      display: block;
-    }
-
-    .detail-intro {
-      font-size: 1rem;
-      color: var(--slate);
-      line-height: 1.85;
-      font-weight: 300;
-      margin-bottom: 2.5rem;
-    }
-
-    .detail-cta {
-      display: inline-block;
-      border: 1px solid var(--navy);
-      color: var(--navy);
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.75rem 1.8rem;
-      text-decoration: none;
-      border-radius: 2px;
-      transition: all 0.25s;
-    }
-
-    .detail-cta:hover {
-      background: var(--navy);
-      color: #fff;
-    }
-
-    .detail-content h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.45rem;
-      font-weight: 500;
-      color: var(--navy);
-      margin: 2.5rem 0 1.2rem;
-      padding-bottom: 0.6rem;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .detail-content h3:first-child { margin-top: 0; }
-
-    .benefit-list { list-style: none; }
-
-    .benefit-list li {
-      font-size: 0.92rem;
-      color: var(--slate);
-      padding: 0.75rem 0 0.75rem 1.6rem;
-      position: relative;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-      font-weight: 300;
-      line-height: 1.6;
-    }
-
-    .benefit-list li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      width: 8px;
-      height: 1px;
-      background: var(--gold);
-    }
-
-    /* ─── STATS ─── */
-    .stats-section {
-      background: var(--navy);
-      padding: 8rem 3rem;
-    }
-
-    .stats-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .stats-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 5rem;
-      flex-wrap: wrap;
-      gap: 2rem;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      border-top: 1px solid rgba(201,168,76,0.2);
-    }
-
-    .stat-item {
-      padding: 3rem 2rem 3rem 0;
-      border-right: 1px solid rgba(201,168,76,0.1);
-    }
-
-    .stat-item:last-child { border-right: none; }
-    .stat-item:not(:first-child) { padding-left: 2rem; }
-
-    .stat-number {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3rem, 5vw, 4.5rem);
-      font-weight: 300;
-      color: var(--gold);
-      line-height: 1;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.5);
-      font-weight: 300;
-      line-height: 1.5;
-    }
-
-    /* ─── CTA SECTION ─── */
-    .cta-section {
-      padding: 10rem 3rem;
-      background: #fff;
-      text-align: center;
-    }
-
-    .cta-inner { max-width: 700px; margin: 0 auto; }
-
-    .cta-section h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 400;
-      color: var(--navy);
-      line-height: 1.15;
-      margin-bottom: 1.5rem;
-    }
-
-    .cta-section p {
-      font-size: 1rem;
-      color: var(--slate);
-      font-weight: 300;
-      line-height: 1.85;
-      margin-bottom: 3rem;
-    }
-
-    .cta-contact-block {
-      display: flex;
-      justify-content: center;
+      grid-template-columns: 1fr auto;
+      gap: 0 3rem;
       align-items: center;
-      gap: 2.5rem;
-      flex-wrap: wrap;
-      margin-top: 3rem;
-      padding-top: 3rem;
-      border-top: 1px solid var(--rule);
     }
-
-    .cta-contact-item { text-align: center; }
-
-    .cta-contact-item .ci-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gold);
-      display: block;
-      margin-bottom: 0.3rem;
+    .hero-left { grid-column: 1; }
+    .hero-tabs {
+      grid-column: 2;
+      display: flex; flex-direction: column;
+      opacity: 0; animation: fadeUp 0.8s 1s forwards;
+      align-self: center;
     }
-
-    .cta-contact-item a, .cta-contact-item span {
-      font-size: 0.95rem;
-      color: var(--navy);
+    .hero-tab {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1.35rem 1.6rem 1.35rem 1.4rem;
+      border: 1px solid rgba(201,168,76,0.2);
+      border-bottom: none;
+      background: rgba(13,27,46,0.65);
+      backdrop-filter: blur(10px);
       text-decoration: none;
-      font-weight: 400;
-    }
-
-    .cta-contact-item a:hover { color: var(--gold); }
-
-    /* ─── FOOTER ─── */
-    footer {
-      background: var(--navy);
-      padding: 4rem 3rem;
-      border-top: 1px solid rgba(201,168,76,0.15);
-    }
-
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-    }
-
-    .footer-brand {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      color: #fff;
-      font-weight: 400;
-    }
-
-    .footer-brand span { color: var(--gold); }
-
-    .footer-tagline {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.35);
-      margin-top: 0.3rem;
-      font-weight: 300;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
+      color: rgba(255,255,255,0.65);
       font-size: 0.78rem;
-      color: rgba(255,255,255,0.45);
-      text-decoration: none;
-      letter-spacing: 0.06em;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover { color: var(--gold); }
-
-    /* ─── BACK NAV ─── */
-    .back-nav {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.75rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--gold);
-      text-decoration: none;
-      margin-bottom: 3rem;
-      transition: gap 0.2s;
+      transition: all 0.28s;
+      min-width: 210px;
+      border-left: 3px solid transparent;
     }
-
-    .back-nav:hover { gap: 0.8rem; }
-
-    /* ─── ANIMATIONS ─── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+    .hero-tab:last-child { border-bottom: 1px solid rgba(201,168,76,0.2); }
+    .hero-tab:hover {
+      background: rgba(201,168,76,0.1);
+      color: #fff;
+      border-left-color: var(--gold);
     }
-
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
+    .hero-tab .tab-icon {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.22);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 1rem; transition: all 0.25s;
     }
+    .hero-tab:hover .tab-icon { background: rgba(201,168,76,0.18); border-color: var(--gold); }
+    .hero-tab .tab-text { display: flex; flex-direction: column; gap: 0.2rem; }
+    .hero-tab .tab-label { font-size: 0.75rem; letter-spacing: 0.12em; color: inherit; font-weight: 500; }
+    .hero-tab .tab-desc { font-size: 0.67rem; letter-spacing: 0.03em; text-transform: none; color: rgba(255,255,255,0.38); font-weight: 300; }
+    .hero-tab:hover .tab-desc { color: rgba(255,255,255,0.55); }
+    .hero-tab .tab-arrow { margin-left: auto; color: var(--gold); opacity: 0; transition: all 0.25s; padding-left: 0.5rem; }
+    .hero-tab:hover .tab-arrow { opacity: 1; transform: translateX(3px); }
 
-    /* ─── RESPONSIVE ─── */
     @media (max-width: 900px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
-      .hero { padding: 7rem 1.5rem 5rem; }
-      .intro-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .intro-heading { position: static; }
-      .tiles-grid { grid-template-columns: 1fr; }
-      .detail-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .detail-sticky { position: static; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .stat-item { border-right: none; border-bottom: 1px solid rgba(201,168,76,0.1); padding: 2rem 0; }
-      .stat-item:not(:first-child) { padding-left: 0; }
-      .footer-inner { flex-direction: column; text-align: center; }
-      .intro-band, .services-section, .detail-section, .stats-section, .cta-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      nav { padding:1rem 1.5rem; }
+      .nav-links { display:none; }
+      .hero { padding:7rem 1.5rem 5rem; }
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-tabs { display: none; }
+      .intro-inner { grid-template-columns:1fr; gap:2rem; }
+      .intro-heading { position:static; }
+      .tiles-grid { grid-template-columns:1fr; }
+      .detail-inner { grid-template-columns:1fr; gap:3rem; }
+      .detail-sticky { position:static; }
+      .stats-grid { grid-template-columns:repeat(2,1fr); }
+      .stat-item { border-right:none; border-bottom:1px solid rgba(201,168,76,0.1); padding:2rem 0; }
+      .stat-item:not(:first-child) { padding-left:0; }
+      .footer-inner { flex-direction:column; text-align:center; }
+      .intro-band,.services-section,.detail-section,.stats-section,.cta-section { padding-left:1.5rem; padding-right:1.5rem; }
     }
-
-    @media (max-width: 600px) {
-      .stats-grid { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 600px) { .stats-grid { grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-logo">Kinetic <span>Consulting</span></a>
-    <ul class="nav-links">
-      <li><a href="#asset-managers">Asset Managers</a></li>
-      <li><a href="#insurers">Insurers</a></li>
-      <li><a href="#rias-wealth">RIAs &amp; Wealth</a></li>
-      <li><a href="#results">Results</a></li>
-      <li><a href="#cta" class="nav-cta">Contact</a></li>
-    </ul>
-  </nav>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Kinetic <span>Consulting</span></a>
+  <ul class="nav-links">
+    <li><a href="#asset-managers">Asset Managers</a></li>
+    <li><a href="#insurers">Insurers</a></li>
+    <li><a href="#rias-wealth">RIAs &amp; Wealth</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#cta" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-grid"></div>
-    <div class="hero-content">
-      <div class="hero-eyebrow">
-        <span>Investment Firm Consulting</span>
-      </div>
+<!-- HERO -->
+<header class="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-eyebrow"><span>Investment Firm Consulting</span></div>
       <h1>Data, IBOR &amp;<br><em>Platform Strategy</em></h1>
-      <p class="hero-sub">
-        We help asset managers, insurers, and wealth firms untangle their data, modernize their IBOR, and make platforms like SimCorp, Aladdin, and Eagle work for your teams.
-      </p>
+      <p class="hero-sub">We help asset managers, insurers, and wealth firms untangle their data, modernize their IBOR, and make platforms like SimCorp, Aladdin, and Eagle work for your teams.</p>
       <div class="hero-contact">
         <span class="led-by">Led by Matthew Warner · MBA</span>
         <a href="mailto:mwarner@optonline.net">mwarner@optonline.net</a>
@@ -818,247 +356,503 @@
         <a href="#asset-managers" class="btn-ghost">View Services</a>
       </div>
     </div>
-  </header>
 
-  <!-- MARQUEE -->
-  <div class="marquee-strip" aria-hidden="true">
-    <div class="marquee-track">
-      <span>SimCorp Dimension</span>
-      <span>BlackRock Aladdin</span>
-      <span>Eagle PACE</span>
-      <span>IBOR Transformation</span>
-      <span>Snowflake</span>
-      <span>Databricks</span>
-      <span>AWS</span>
-      <span>Data Governance</span>
-      <span>Charles River</span>
-      <span>Bloomberg AIM</span>
-      <span>SimCorp Dimension</span>
-      <span>BlackRock Aladdin</span>
-      <span>Eagle PACE</span>
-      <span>IBOR Transformation</span>
-      <span>Snowflake</span>
-      <span>Databricks</span>
-      <span>AWS</span>
-      <span>Data Governance</span>
-      <span>Charles River</span>
-      <span>Bloomberg AIM</span>
+    <!-- Right-side tabs -->
+    <div class="hero-tabs">
+      <a href="#intro-approach" class="hero-tab">
+        <div class="tab-icon">&#9671;</div>
+        <div class="tab-text">
+          <span class="tab-label">Our Approach</span>
+          <span class="tab-desc">How we work with your team</span>
+        </div>
+        <span class="tab-arrow">→</span>
+      </a>
+      <a href="#who-we-serve" class="hero-tab">
+        <div class="tab-icon">&#9702;</div>
+        <div class="tab-text">
+          <span class="tab-label">Who We Serve</span>
+          <span class="tab-desc">Asset managers, insurers &amp; RIAs</span>
+        </div>
+        <span class="tab-arrow">→</span>
+      </a>
     </div>
   </div>
+  <div class="ticker-tape"><div class="ticker-inner" id="ticker-inner"></div></div>
+</header>
 
-  <!-- INTRO BAND -->
-  <section class="intro-band">
-    <div class="intro-inner">
-      <div>
-        <div class="intro-label">Our Approach</div>
-        <h2 class="intro-heading">Client-centric consulting.<br>Production-ready outcomes.</h2>
-      </div>
-      <div class="intro-body">
-        <p>Investment firms face increasingly complex data landscapes — fragmented systems, legacy IBORs, and platforms that don't talk to each other. The result: manual workarounds, delayed reporting, and risk blind spots.</p>
-        <p>Kinetic Consulting brings senior-level expertise directly to your team. We don't hand off to junior staff. Every engagement is run by practitioners who've sat in your seat and delivered real transformations at firms like yours.</p>
-        <p>We work across the full front-to-back stack — from data strategy and architecture through platform implementation, reconciliation automation, and regulatory reporting — and we stay until it's in production.</p>
-      </div>
-    </div>
-  </section>
+<!-- MARQUEE -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span>SimCorp Dimension</span><span>BlackRock Aladdin</span><span>Eagle PACE</span>
+    <span>IBOR Transformation</span><span>Snowflake</span><span>Databricks</span>
+    <span>AWS</span><span>Data Governance</span><span>Charles River</span><span>Bloomberg AIM</span>
+    <span>SimCorp Dimension</span><span>BlackRock Aladdin</span><span>Eagle PACE</span>
+    <span>IBOR Transformation</span><span>Snowflake</span><span>Databricks</span>
+    <span>AWS</span><span>Data Governance</span><span>Charles River</span><span>Bloomberg AIM</span>
+  </div>
+</div>
 
-  <!-- SERVICE TILES -->
-  <section class="services-section">
-    <div class="section-header">
-      <div class="section-label">Who We Serve</div>
-      <h2 class="section-heading">Three areas of deep expertise</h2>
+<!-- INTRO with collaboration canvas -->
+<section class="intro-band" id="intro-approach">
+  <canvas id="collab-canvas"></canvas>
+  <div class="intro-inner">
+    <div>
+      <div class="intro-label">Our Approach</div>
+      <h2 class="intro-heading">Client-centric consulting.<br>Production-ready outcomes.</h2>
     </div>
-    <div class="tiles-grid">
-      <a href="#asset-managers" class="tile-card">
-        <span class="tile-num">01</span>
-        <h2>Asset Managers</h2>
-        <span class="tile-sub">Platform Modernization</span>
-        <p>IBOR transitions, data governance, risk &amp; performance alignment across your full investment stack.</p>
-        <span class="tile-arrow">Explore</span>
-      </a>
-      <a href="#insurers" class="tile-card">
-        <span class="tile-num">02</span>
-        <h2>Insurers</h2>
-        <span class="tile-sub">Pricing &amp; Accounting</span>
-        <p>Pricing controls, PLM implementation, and portfolio onboarding — clean, automated, audit-ready.</p>
-        <span class="tile-arrow">Explore</span>
-      </a>
-      <a href="#rias-wealth" class="tile-card">
-        <span class="tile-num">03</span>
-        <h2>RIAs &amp; Wealth</h2>
-        <span class="tile-sub">Operations Optimization</span>
-        <p>OMS/EMS strategy, vendor integration, compliance workflows, and scalable client operations.</p>
-        <span class="tile-arrow">Explore</span>
-      </a>
+    <div class="intro-body">
+      <p>Investment firms face increasingly complex data landscapes — fragmented systems, legacy IBORs, and platforms that don't talk to each other. The result: manual workarounds, delayed reporting, and risk blind spots.</p>
+      <p>Kinetic Consulting brings senior-level expertise directly to your team. We don't hand off to junior staff. Every engagement is run by practitioners who've sat in your seat and delivered real transformations at firms like yours.</p>
+      <p>We work across the full front-to-back stack — from data strategy and architecture through platform implementation, reconciliation automation, and regulatory reporting — and we stay until it's in production.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ASSET MANAGERS -->
-  <section id="asset-managers" class="detail-section">
-    <div class="detail-inner">
-      <div class="detail-sticky">
-        <a href="#" class="back-nav">← Home</a>
-        <span class="detail-num">01</span>
-        <div class="detail-sub">Asset Managers</div>
-        <h2>Platform Modernization &amp; IBOR Strategy</h2>
-        <p class="detail-intro">Whether you're migrating from legacy systems, implementing a new front-to-back platform, or need clean real-time data across teams — we deliver production-ready solutions, quickly.</p>
-        <a href="#cta" class="detail-cta">Book a call</a>
-      </div>
-      <div class="detail-content">
-        <h3>Typical Engagements</h3>
-        <ul class="benefit-list">
-          <li>Full IBOR transformation and data governance framework</li>
-          <li>SimCorp Dimension, BlackRock Aladdin, Eagle PACE implementations &amp; optimizations</li>
-          <li>Golden source data strategy &amp; reconciliation automation</li>
-          <li>Risk &amp; performance alignment — attribution, stress testing, regulatory reporting</li>
-          <li>Cloud migration &amp; modern data platform architecture (Snowflake, Databricks, AWS)</li>
-        </ul>
-        <h3>Results You Can Expect</h3>
-        <ul class="benefit-list">
-          <li>Single source of truth for positions, cash, and transactions</li>
-          <li>60–70% reduction in manual data processes</li>
-          <li>Audit-ready documentation and controls</li>
-          <li>Faster month-end close &amp; client reporting cycles</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+<!-- SERVICE TILES -->
+<section class="services-section" id="who-we-serve">
+  <div class="section-header">
+    <div class="section-label">Who We Serve</div>
+    <h2 class="section-heading">Three areas of deep expertise</h2>
+  </div>
+  <div class="tiles-grid">
+    <a href="#asset-managers" class="tile-card">
+      <span class="tile-num">01</span>
+      <h2>Asset Managers</h2>
+      <span class="tile-sub">Platform Modernization</span>
+      <p>IBOR transitions, data governance, risk &amp; performance alignment across your full investment stack.</p>
+      <span class="tile-arrow">Explore</span>
+    </a>
+    <a href="#insurers" class="tile-card">
+      <span class="tile-num">02</span>
+      <h2>Insurers</h2>
+      <span class="tile-sub">Pricing &amp; Accounting</span>
+      <p>Pricing controls, PLM implementation, and portfolio onboarding — clean, automated, audit-ready.</p>
+      <span class="tile-arrow">Explore</span>
+    </a>
+    <a href="#rias-wealth" class="tile-card">
+      <span class="tile-num">03</span>
+      <h2>RIAs &amp; Wealth</h2>
+      <span class="tile-sub">Operations Optimization</span>
+      <p>OMS/EMS strategy, vendor integration, compliance workflows, and scalable client operations.</p>
+      <span class="tile-arrow">Explore</span>
+    </a>
+  </div>
+</section>
 
-  <!-- INSURERS -->
-  <section id="insurers" class="detail-section">
-    <div class="detail-inner">
-      <div class="detail-sticky">
-        <a href="#" class="back-nav">← Home</a>
-        <span class="detail-num">02</span>
-        <div class="detail-sub">Insurers</div>
-        <h2>Pricing &amp; Accounting</h2>
-        <p class="detail-intro">Move from fragmented spreadsheets and legacy systems to clean, automated, audit-ready processes — while staying fully compliant with statutory, GAAP, and IFRS requirements.</p>
-        <a href="#cta" class="detail-cta">Book a call</a>
-      </div>
-      <div class="detail-content">
-        <h3>Typical Engagements</h3>
-        <ul class="benefit-list">
-          <li>Pricing engine modernization &amp; real-time controls</li>
-          <li>Policy Lifecycle Management (PLM) implementation &amp; optimization</li>
-          <li>Portfolio onboarding automation &amp; data reconciliation</li>
-          <li>Accounting &amp; reporting alignment — statutory, GAAP, IFRS</li>
-          <li>Integration with SimCorp, Aladdin, Eagle or custom platforms</li>
-        </ul>
-        <h3>Results You Can Expect</h3>
-        <ul class="benefit-list">
-          <li>Manual pricing &amp; valuation work reduced 60–70%</li>
-          <li>Faster month-end close &amp; board reporting</li>
-          <li>Single source of truth for positions, cash, and risk</li>
-          <li>Audit-ready documentation &amp; controls</li>
-        </ul>
-      </div>
+<!-- ASSET MANAGERS -->
+<section id="asset-managers" class="detail-section">
+  <div class="detail-inner">
+    <div class="detail-sticky">
+      <a href="#" class="back-nav">← Home</a>
+      <span class="detail-num">01</span>
+      <div class="detail-sub">Asset Managers</div>
+      <h2>Platform Modernization &amp; IBOR Strategy</h2>
+      <p class="detail-intro">Whether you're migrating from legacy systems, implementing a new front-to-back platform, or need clean real-time data across teams — we deliver production-ready solutions, quickly.</p>
+      <a href="#cta" class="detail-cta">Book a call</a>
     </div>
-  </section>
-
-  <!-- RIAS & WEALTH -->
-  <section id="rias-wealth" class="detail-section">
-    <div class="detail-inner">
-      <div class="detail-sticky">
-        <a href="#" class="back-nav">← Home</a>
-        <span class="detail-num">03</span>
-        <div class="detail-sub">RIAs &amp; Wealth Firms</div>
-        <h2>Operations Optimization</h2>
-        <p class="detail-intro">Turn fragmented processes into efficient, technology-driven operations — so your team can focus on client relationships, not manual workarounds.</p>
-        <a href="#cta" class="detail-cta">Book a call</a>
-      </div>
-      <div class="detail-content">
-        <h3>Typical Engagements</h3>
-        <ul class="benefit-list">
-          <li>OMS/EMS strategy &amp; implementation — Charles River, Eze, Bloomberg</li>
-          <li>Vendor integration &amp; data flow automation</li>
-          <li>Compliance workflows &amp; regulatory reporting modernization</li>
-          <li>Client onboarding &amp; portfolio management optimization</li>
-          <li>Cloud migration &amp; modern data architecture</li>
-        </ul>
-        <h3>Results You Can Expect</h3>
-        <ul class="benefit-list">
-          <li>Trade &amp; settlement processing time cut 50%+</li>
-          <li>Significant reduction in compliance exceptions</li>
-          <li>Unified client portfolio view across systems</li>
-          <li>Scalable operations ready for AUM growth</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <section id="results" class="stats-section">
-    <div class="stats-inner">
-      <div class="stats-header">
-        <div>
-          <div class="section-label" style="color:var(--gold);">Proven Results</div>
-          <h2 class="section-heading" style="color:#fff;">Typical impact from<br>recent engagements</h2>
-        </div>
-        <p style="font-size:0.85rem;color:rgba(255,255,255,0.4);max-width:280px;font-weight:300;line-height:1.7;">
-          Across asset managers, insurers and wealth platforms. Full case studies available upon request.
-        </p>
-      </div>
-      <div class="stats-grid">
-        <div class="stat-item">
-          <span class="stat-number">65%</span>
-          <span class="stat-label">Reduction in<br>manual data work</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">52%</span>
-          <span class="stat-label">Fewer data<br>exceptions</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">42%</span>
-          <span class="stat-label">Faster reporting<br>turnaround</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">78%</span>
-          <span class="stat-label">Increase in<br>user confidence</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section id="cta" class="cta-section">
-    <div class="cta-inner">
-      <div class="section-label" style="justify-content:center;">Get Started</div>
-      <h2>Ready to modernize your investment data stack?</h2>
-      <p>Start with a focused 30-minute strategy call. We'll identify the highest-leverage opportunities in your platform, data, or operations — and share concrete ideas you can act on immediately, whether or not we work together.</p>
-      <a href="mailto:mwarner@optonline.net" class="btn-primary" style="font-size:0.85rem; padding:1rem 2.8rem;">
-        Book a 30-Minute Strategy Call
-      </a>
-      <div class="cta-contact-block">
-        <div class="cta-contact-item">
-          <span class="ci-label">Email</span>
-          <a href="mailto:mwarner@optonline.net">mwarner@optonline.net</a>
-        </div>
-        <div class="cta-contact-item">
-          <span class="ci-label">Phone</span>
-          <span>203-400-0006</span>
-        </div>
-        <div class="cta-contact-item">
-          <span class="ci-label">LinkedIn</span>
-          <a href="https://www.linkedin.com/in/mattwarner1" target="_blank" rel="noopener">mattwarner1 →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div>
-        <div class="footer-brand">Kinetic <span>Consulting</span></div>
-        <div class="footer-tagline">Fairfield, CT · Investment firm data &amp; platform strategy</div>
-      </div>
-      <ul class="footer-links">
-        <li><a href="#asset-managers">Asset Managers</a></li>
-        <li><a href="#insurers">Insurers</a></li>
-        <li><a href="#rias-wealth">RIAs &amp; Wealth</a></li>
-        <li><a href="mailto:mwarner@optonline.net">Contact</a></li>
+    <div class="detail-content">
+      <h3>Typical Engagements</h3>
+      <ul class="benefit-list">
+        <li>Full IBOR transformation and data governance framework</li>
+        <li>SimCorp Dimension, BlackRock Aladdin, Eagle PACE implementations &amp; optimizations</li>
+        <li>Golden source data strategy &amp; reconciliation automation</li>
+        <li>Risk &amp; performance alignment — attribution, stress testing, regulatory reporting</li>
+        <li>Cloud migration &amp; modern data platform architecture (Snowflake, Databricks, AWS)</li>
+      </ul>
+      <h3>Results You Can Expect</h3>
+      <ul class="benefit-list">
+        <li>Single source of truth for positions, cash, and transactions</li>
+        <li>60–70% reduction in manual data processes</li>
+        <li>Audit-ready documentation and controls</li>
+        <li>Faster month-end close &amp; client reporting cycles</li>
       </ul>
     </div>
-  </footer>
+  </div>
+</section>
+
+<!-- INSURERS -->
+<section id="insurers" class="detail-section">
+  <div class="detail-inner">
+    <div class="detail-sticky">
+      <a href="#" class="back-nav">← Home</a>
+      <span class="detail-num">02</span>
+      <div class="detail-sub">Insurers</div>
+      <h2>Pricing &amp; Accounting</h2>
+      <p class="detail-intro">Move from fragmented spreadsheets and legacy systems to clean, automated, audit-ready processes — while staying fully compliant with statutory, GAAP, and IFRS requirements.</p>
+      <a href="#cta" class="detail-cta">Book a call</a>
+    </div>
+    <div class="detail-content">
+      <h3>Typical Engagements</h3>
+      <ul class="benefit-list">
+        <li>Pricing engine modernization &amp; real-time controls</li>
+        <li>Policy Lifecycle Management (PLM) implementation &amp; optimization</li>
+        <li>Portfolio onboarding automation &amp; data reconciliation</li>
+        <li>Accounting &amp; reporting alignment — statutory, GAAP, IFRS</li>
+        <li>Integration with SimCorp, Aladdin, Eagle or custom platforms</li>
+      </ul>
+      <h3>Results You Can Expect</h3>
+      <ul class="benefit-list">
+        <li>Manual pricing &amp; valuation work reduced 60–70%</li>
+        <li>Faster month-end close &amp; board reporting</li>
+        <li>Single source of truth for positions, cash, and risk</li>
+        <li>Audit-ready documentation &amp; controls</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- RIAS & WEALTH -->
+<section id="rias-wealth" class="detail-section">
+  <div class="detail-inner">
+    <div class="detail-sticky">
+      <a href="#" class="back-nav">← Home</a>
+      <span class="detail-num">03</span>
+      <div class="detail-sub">RIAs &amp; Wealth Firms</div>
+      <h2>Operations Optimization</h2>
+      <p class="detail-intro">Turn fragmented processes into efficient, technology-driven operations — so your team can focus on client relationships, not manual workarounds.</p>
+      <a href="#cta" class="detail-cta">Book a call</a>
+    </div>
+    <div class="detail-content">
+      <h3>Typical Engagements</h3>
+      <ul class="benefit-list">
+        <li>OMS/EMS strategy &amp; implementation — Charles River, Eze, Bloomberg</li>
+        <li>Vendor integration &amp; data flow automation</li>
+        <li>Compliance workflows &amp; regulatory reporting modernization</li>
+        <li>Client onboarding &amp; portfolio management optimization</li>
+        <li>Cloud migration &amp; modern data architecture</li>
+      </ul>
+      <h3>Results You Can Expect</h3>
+      <ul class="benefit-list">
+        <li>Trade &amp; settlement processing time cut 50%+</li>
+        <li>Significant reduction in compliance exceptions</li>
+        <li>Unified client portfolio view across systems</li>
+        <li>Scalable operations ready for AUM growth</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="results" class="stats-section">
+  <div class="stats-inner">
+    <div class="stats-header">
+      <div>
+        <div class="section-label" style="color:var(--gold);">Proven Results</div>
+        <h2 class="section-heading" style="color:#fff;">Typical impact from<br>recent engagements</h2>
+      </div>
+      <p style="font-size:0.85rem;color:rgba(255,255,255,0.4);max-width:280px;font-weight:300;line-height:1.7;">
+        Across asset managers, insurers and wealth platforms. Full case studies available upon request.
+      </p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-item"><span class="stat-number">65%</span><span class="stat-label">Reduction in<br>manual data work</span></div>
+      <div class="stat-item"><span class="stat-number">52%</span><span class="stat-label">Fewer data<br>exceptions</span></div>
+      <div class="stat-item"><span class="stat-number">42%</span><span class="stat-label">Faster reporting<br>turnaround</span></div>
+      <div class="stat-item"><span class="stat-number">78%</span><span class="stat-label">Increase in<br>user confidence</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" class="cta-section">
+  <div class="cta-inner">
+    <div class="section-label" style="justify-content:center;">Get Started</div>
+    <h2>Ready to modernize your investment data stack?</h2>
+    <p>Start with a focused 30-minute strategy call. We'll identify the highest-leverage opportunities in your platform, data, or operations — and share concrete ideas you can act on immediately, whether or not we work together.</p>
+    <a href="mailto:mwarner@optonline.net" class="btn-primary" style="font-size:0.85rem;padding:1rem 2.8rem;">Book a 30-Minute Strategy Call</a>
+    <div class="cta-contact-block">
+      <div class="cta-contact-item"><span class="ci-label">Email</span><a href="mailto:mwarner@optonline.net">mwarner@optonline.net</a></div>
+      <div class="cta-contact-item"><span class="ci-label">Phone</span><span>203-400-0006</span></div>
+      <div class="cta-contact-item"><span class="ci-label">LinkedIn</span><a href="https://www.linkedin.com/in/mattwarner1" target="_blank" rel="noopener">mattwarner1 →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Kinetic <span>Consulting</span></div>
+      <div class="footer-tagline">Fairfield, CT · Investment firm data &amp; platform strategy</div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#asset-managers">Asset Managers</a></li>
+      <li><a href="#insurers">Insurers</a></li>
+      <li><a href="#rias-wealth">RIAs &amp; Wealth</a></li>
+      <li><a href="mailto:mwarner@optonline.net">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+/* ══════════════════════════════════════════════════════
+   HERO CANVAS — Live stock market chart background
+══════════════════════════════════════════════════════ */
+(function() {
+  const canvas = document.getElementById('hero-canvas');
+  const ctx    = canvas.getContext('2d');
+
+  let W, H;
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function genSeries(len, start, vol) {
+    const pts = [start];
+    for (let i = 1; i < len; i++) {
+      const change = (Math.random() - 0.5 + 0.02) * vol;
+      pts.push(Math.max(8, pts[i - 1] + change));
+    }
+    return pts;
+  }
+
+  const LANES = 5;
+  const streams = Array.from({ length: LANES }, (_, i) => ({
+    prices: genSeries(260, 50 + Math.random() * 100, 3.5 + Math.random() * 5),
+    offset: Math.random() * 200,
+    speed:  0.35 + Math.random() * 0.45,
+    cw:     5 + Math.floor(Math.random() * 4),
+    gap:    3,
+    bright: i === 1 || i === 3,
+  }));
+
+  function drawGrid() {
+    ctx.save();
+    ctx.strokeStyle = 'rgba(201,168,76,0.05)';
+    ctx.lineWidth = 1;
+    for (let r = 0; r <= 8; r++) {
+      const y = (H / 8) * r;
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    }
+    for (let c = 0; c <= 14; c++) {
+      const x = (W / 14) * c;
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawStream(s, idx) {
+    const laneH = H / LANES;
+    const laneY = idx * laneH;
+    const step  = s.cw + s.gap;
+    const prices = s.prices;
+
+    s.offset = (s.offset + s.speed) % (prices.length * step);
+    const startI   = Math.floor(s.offset / step);
+    const xStart   = -(s.offset % step);
+    const visCount = Math.ceil(W / step) + 2;
+
+    const visSlice = Array.from({ length: visCount }, (_, k) => prices[(startI + k) % prices.length]);
+    const lo = Math.min(...visSlice), hi = Math.max(...visSlice);
+    const range = hi - lo || 1;
+    const pad = laneH * 0.1;
+    const scaleY = v => laneY + laneH - pad - ((v - lo) / range) * (laneH - pad * 2);
+
+    const linePoints = [];
+    ctx.save();
+    for (let i = 0; i < visCount; i++) {
+      const pi   = (startI + i)     % prices.length;
+      const piN  = (startI + i + 1) % prices.length;
+      const open = prices[pi], close = prices[piN];
+      const high = Math.max(open, close) + Math.random() * 2.5;
+      const low  = Math.min(open, close) - Math.random() * 2.5;
+      const isUp = close >= open;
+      const x    = xStart + i * step;
+
+      ctx.strokeStyle = isUp ? 'rgba(74,222,128,0.3)' : 'rgba(248,113,113,0.3)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(x + s.cw / 2, scaleY(high));
+      ctx.lineTo(x + s.cw / 2, scaleY(low));
+      ctx.stroke();
+
+      const yTop = Math.min(scaleY(open), scaleY(close));
+      const yH   = Math.max(1, Math.abs(scaleY(open) - scaleY(close)));
+      ctx.fillStyle = isUp ? 'rgba(74,222,128,0.18)' : 'rgba(248,113,113,0.15)';
+      ctx.fillRect(x, yTop, s.cw, yH);
+      linePoints.push({ x: x + s.cw / 2, y: scaleY(close) });
+    }
+
+    if (linePoints.length > 1) {
+      ctx.beginPath();
+      ctx.strokeStyle = s.bright ? 'rgba(201,168,76,0.7)' : 'rgba(201,168,76,0.2)';
+      ctx.lineWidth   = s.bright ? 1.8 : 1;
+      ctx.shadowColor = 'rgba(201,168,76,0.5)';
+      ctx.shadowBlur  = s.bright ? 6 : 0;
+      linePoints.forEach((p, i) => i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y));
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+    }
+    ctx.restore();
+  }
+
+  function animateHero() {
+    ctx.clearRect(0, 0, W, H);
+    drawGrid();
+    streams.forEach((s, i) => drawStream(s, i));
+    requestAnimationFrame(animateHero);
+  }
+  animateHero();
+
+  /* Live ticker tape */
+  const TICKERS = [
+    { sym:'BLK',  p:850.20 }, { sym:'GS',   p:453.10 }, { sym:'JPM',  p:198.75 },
+    { sym:'MS',   p:94.50  }, { sym:'BAC',  p:36.20  }, { sym:'WFC',  p:57.80  },
+    { sym:'SCHW', p:74.15  }, { sym:'TROW', p:116.30 }, { sym:'BEN',  p:22.40  },
+    { sym:'IVZ',  p:16.90  }, { sym:'AMP',  p:408.60 }, { sym:'STT',  p:81.50  },
+    { sym:'BK',   p:63.90  }, { sym:'FIS',  p:58.40  }, { sym:'NTRS', p:99.80  },
+    { sym:'SS&C', p:71.20  },
+  ];
+  const live = TICKERS.map(t => ({ ...t, chg: (Math.random() - 0.5) * 3 }));
+
+  function refreshTicker() {
+    live.forEach(d => {
+      d.p   = Math.max(1, d.p + (Math.random() - 0.495) * 0.25);
+      d.chg += (Math.random() - 0.5) * 0.08;
+    });
+    const double = [...live, ...live];
+    document.getElementById('ticker-inner').innerHTML = double.map(d => {
+      const up  = d.chg >= 0;
+      const cls = up ? 'tick-up' : 'tick-down';
+      const arr = up ? '▲' : '▼';
+      return `<span class="tick-item"><span class="tick-sym">${d.sym}</span><span class="tick-val">${d.p.toFixed(2)}</span><span class="${cls}">${arr} ${Math.abs(d.chg).toFixed(2)}%</span></span>`;
+    }).join('');
+  }
+  refreshTicker();
+  setInterval(refreshTicker, 2800);
+})();
+
+
+/* ══════════════════════════════════════════════════════
+   INTRO CANVAS — Business collaboration network
+══════════════════════════════════════════════════════ */
+(function() {
+  const canvas = document.getElementById('collab-canvas');
+  const ctx    = canvas.getContext('2d');
+
+  let W, H;
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+
+  const LABELS = [
+    'SimCorp','Aladdin','Eagle','Snowflake',
+    'Databricks','AWS','Charles River','Bloomberg',
+    'IBOR','Risk Engine','Compliance','Reporting',
+    'Cloud Layer','API Hub','Analytics','Data Ops'
+  ];
+
+  let nodes = [], edges = [];
+
+  function buildGraph() {
+    const count = Math.min(16, Math.max(8, Math.floor((W * H) / 20000)));
+    nodes = Array.from({ length: count }, (_, i) => ({
+      x:  60 + Math.random() * (W - 120),
+      y:  40 + Math.random() * (H - 80),
+      vx: (Math.random() - 0.5) * 0.28,
+      vy: (Math.random() - 0.5) * 0.28,
+      r:  4 + Math.random() * 6,
+      label:  LABELS[i % LABELS.length],
+      phase:  Math.random() * Math.PI * 2,
+      pSpeed: 0.018 + Math.random() * 0.018,
+      hub:    Math.random() > 0.7,
+    }));
+
+    edges = [];
+    nodes.forEach((n, i) => {
+      const sorted = nodes
+        .map((m, j) => ({ j, d: Math.hypot(m.x - n.x, m.y - n.y) }))
+        .filter(e => e.j !== i)
+        .sort((a, b) => a.d - b.d)
+        .slice(0, 2 + Math.floor(Math.random() * 2));
+      sorted.forEach(({ j }) => {
+        if (!edges.some(e => (e.a === i && e.b === j) || (e.a === j && e.b === i))) {
+          edges.push({
+            a: i, b: j,
+            phase: Math.random() * Math.PI * 2,
+            speed: 0.012 + Math.random() * 0.016,
+            packets: Array.from({ length: 2 }, () => ({
+              t:     Math.random(),
+              speed: 0.003 + Math.random() * 0.004,
+              dir:   Math.random() > 0.5 ? 1 : -1,
+            })),
+          });
+        }
+      });
+    });
+  }
+  buildGraph();
+  window.addEventListener('resize', () => { resize(); buildGraph(); });
+
+  function animateCollab() {
+    ctx.clearRect(0, 0, W, H);
+
+    nodes.forEach(n => {
+      n.x += n.vx; n.y += n.vy; n.phase += n.pSpeed;
+      if (n.x < 50 || n.x > W - 50) n.vx *= -1;
+      if (n.y < 30 || n.y > H - 30) n.vy *= -1;
+    });
+
+    edges.forEach(e => {
+      e.phase += e.speed;
+      const na = nodes[e.a], nb = nodes[e.b];
+      const dist  = Math.hypot(nb.x - na.x, nb.y - na.y);
+      const alpha = Math.max(0, 0.3 - dist / (Math.max(W, H) * 0.85));
+      if (alpha <= 0) return;
+
+      ctx.save();
+      ctx.strokeStyle = `rgba(201,168,76,${alpha})`;
+      ctx.lineWidth   = 0.7;
+      ctx.beginPath(); ctx.moveTo(na.x, na.y); ctx.lineTo(nb.x, nb.y); ctx.stroke();
+
+      e.packets.forEach(pk => {
+        pk.t += pk.speed * pk.dir;
+        if (pk.t > 1) pk.t = 0;
+        if (pk.t < 0) pk.t = 1;
+        const px = na.x + (nb.x - na.x) * pk.t;
+        const py = na.y + (nb.y - na.y) * pk.t;
+        ctx.fillStyle = `rgba(201,168,76,${alpha * 3.5})`;
+        ctx.beginPath(); ctx.arc(px, py, 2.2, 0, Math.PI * 2); ctx.fill();
+      });
+      ctx.restore();
+    });
+
+    nodes.forEach(n => {
+      const pulse = Math.sin(n.phase);
+      const r     = n.r + 1.2 * pulse;
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, r + 8, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(201,168,76,${0.06 + 0.04 * pulse})`;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+      ctx.fillStyle = n.hub
+        ? `rgba(201,168,76,${0.75 + 0.2 * pulse})`
+        : `rgba(201,168,76,${0.28 + 0.1 * pulse})`;
+      ctx.fill();
+
+      if (n.hub || n.r > 7) {
+        ctx.font      = '500 9.5px "DM Sans", sans-serif';
+        ctx.fillStyle = 'rgba(255,255,255,0.5)';
+        ctx.textAlign = 'center';
+        ctx.fillText(n.label, n.x, n.y - r - 7);
+      }
+      ctx.restore();
+    });
+
+    requestAnimationFrame(animateCollab);
+  }
+  animateCollab();
+})();
+</script>
 
 </body>
 </html>

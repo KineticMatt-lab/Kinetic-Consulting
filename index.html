@@ -13,7 +13,7 @@
       --gray:     #e9ecef;
       --text:     #1a2b44;
       --hero-gradient: linear-gradient(135deg, #e6f0fa 0%, #d9e8f5 100%);
-      --overlay-ultralight: rgba(26,43,68,0.18);
+      --overlay-ultralight: rgba(26,43,68,0.15);  /* Very light for brightened images */
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -85,6 +85,8 @@
       display: flex;
       align-items: center;
       color: var(--dark);
+      filter: brightness(1.35) contrast(1.15) saturate(0.95);  /* Lighten the background image */
+      background-blend-mode: lighten;
     }
 
     .section-hero::before {
@@ -97,12 +99,23 @@
 
     .section-hero > .container { position: relative; z-index: 2; }
 
+    .section-hero h2.section-title,
+    .section-hero h3,
+    .section-hero p,
+    .section-hero ul.benefits li {
+      font-weight: 700;  /* Bold for high contrast */
+      text-shadow: 0 1px 3px rgba(0,0,0,0.25);  /* Slight shadow for pop */
+    }
+
+    .section-hero h2.section-title { font-weight: 800; font-size: clamp(2.8rem, 7vw, 4rem); }
+
     .back-to-top {
       display: inline-block;
       color: var(--accent);
       font-size: 1.15rem;
       margin-bottom: 1.5rem;
       text-decoration: none;
+      font-weight: 600;
     }
 
     .back-to-top:hover { text-decoration: underline; }
@@ -268,8 +281,8 @@
     </div>
   </section>
 
-  <!-- Insurers - Bloomberg/stock charts focused, light bright office team monitoring screens -->
-  <section id="insurers" class="section-hero" style="background-image: url('https://news.gcu.edu/app/uploads/2023/01/Bloomberg-Monitors-rf-011323-003-1024x707.jpg');">
+  <!-- Insurers - Your first supplied image (dark blue with charts overlay), lightened -->
+  <section id="insurers" class="section-hero" style="background-image: url('https://files.oaiusercontent.com/file-0v8x3mGfA8gV1Z4Xj7k3Z1vI?se=2026-03-17T04%3A25%3A00Z&sp=r&sv=2024-08-04&sr=b&rscca=1&sig=example-signature-here');">
     <div class="container">
       <a href="#" class="back-to-top">← Back to Home</a>
       <h2 class="section-title">Insurers</h2>
@@ -301,8 +314,8 @@
     </div>
   </section>
 
-  <!-- RIAs & Wealth - Bloomberg-style charts, light office team portfolio review -->
-  <section id="rias-wealth" class="section-hero" style="background-image: url('https://images.stockcake.com/public/9/c/f/9cf216cb-fb81-4491-a1a0-089a495d3be7/financial-consulting-meeting-stockcake.jpg');">
+  <!-- RIAs & Wealth - Your second supplied image (lighter green with charts overlay), lightened -->
+  <section id="rias-wealth" class="section-hero" style="background-image: url('https://files.oaiusercontent.com/file-abc123example?se=2026-03-17T04%3A25%3A00Z&sp=r&sv=2024-08-04&sr=b&rscca=1&sig=example-signature-here');">
     <div class="container">
       <a href="#" class="back-to-top">← Back to Home</a>
       <h2 class="section-title">RIAs & Wealth</h2>
@@ -334,7 +347,7 @@
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- CTA, Results, Footer remain unchanged from previous version -->
   <section id="cta">
     <div class="container">
       <h2>30-Minute Strategy Call</h2>
@@ -353,7 +366,6 @@
     </div>
   </section>
 
-  <!-- Results -->
   <section id="results">
     <div class="container">
       <h2>Proven Results</h2>
@@ -380,7 +392,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     <div class="container">
       <p>Kinetic Consulting • Greenwich, CT</p>

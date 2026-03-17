@@ -145,7 +145,7 @@
     .marquee-track span::before { content:'◆'; margin-right:2.5rem; font-size:0.5rem; vertical-align:middle; }
     @keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
 
-    /* INTRO (collab canvas) */
+    /* INTRO */
     .intro-band { background: var(--navy); padding: 7rem 3rem; position: relative; overflow: hidden; }
     #collab-canvas { position:absolute; inset:0; width:100%; height:100%; opacity:0.4; pointer-events:none; }
     .intro-inner {
@@ -185,8 +185,8 @@
     .tile-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:var(--gold); transform:scaleX(0); transition:transform 0.3s; }
     .tile-card:hover::after { transform:scaleX(1); }
     .tile-card:hover { background: #0a1525; }
-    .tile-num { font-family:'Cormorant Garamond',serif; font-size:4rem; font-weight:300; color:rgba(201,168,76,0.15); line-height:1; margin-bottom:1.5rem; display:block; }
-    .tile-card h2 { font-family:'Cormorant Garamond',serif; font-size:1.9rem; font-weight:400; margin-bottom:0.6rem; color:#fff; }
+    .tile-num { font-family:'Cormorant Garamond',serif; font-size:4rem; font-weight:400; color:rgba(201,168,76,0.6); line-height:1; margin-bottom:1.5rem; display:block; }
+    .tile-card h2 { font-family:'Cormorant Garamond',serif; font-size:2.8rem; font-weight:500; margin-bottom:0.6rem; color:#fff; }
     .tile-sub { font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:1.2rem; display:block; }
     .tile-card p { font-size:0.88rem; color:rgba(255,255,255,0.55); line-height:1.8; font-weight:300; }
     .tile-arrow { display:inline-flex; align-items:center; gap:0.5rem; margin-top:2rem; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
@@ -247,48 +247,32 @@
 
     @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 
-    /* HERO TABS — right side vertical tab panel */
+    /* HERO TABS */
     .hero-content {
       position: relative; z-index: 2;
       max-width: 1100px; margin: 0 auto; width: 100%;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 0 3rem;
-      align-items: center;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 0 3rem; align-items: center;
     }
     .hero-left { grid-column: 1; }
     .hero-tabs {
-      grid-column: 2;
-      display: flex; flex-direction: column;
-      opacity: 0; animation: fadeUp 0.8s 1s forwards;
-      align-self: center;
+      grid-column: 2; display: flex; flex-direction: column;
+      opacity: 0; animation: fadeUp 0.8s 1s forwards; align-self: center;
     }
     .hero-tab {
       display: flex; align-items: center; gap: 1rem;
       padding: 1.35rem 1.6rem 1.35rem 1.4rem;
-      border: 1px solid rgba(201,168,76,0.2);
-      border-bottom: none;
-      background: rgba(13,27,46,0.65);
-      backdrop-filter: blur(10px);
-      text-decoration: none;
-      color: rgba(255,255,255,0.65);
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: all 0.28s;
-      min-width: 210px;
-      border-left: 3px solid transparent;
+      border: 1px solid rgba(201,168,76,0.2); border-bottom: none;
+      background: rgba(13,27,46,0.65); backdrop-filter: blur(10px);
+      text-decoration: none; color: rgba(255,255,255,0.65);
+      font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+      transition: all 0.28s; min-width: 210px; border-left: 3px solid transparent;
     }
     .hero-tab:last-child { border-bottom: 1px solid rgba(201,168,76,0.2); }
-    .hero-tab:hover {
-      background: rgba(201,168,76,0.1);
-      color: #fff;
-      border-left-color: var(--gold);
-    }
+    .hero-tab:hover { background: rgba(201,168,76,0.1); color: #fff; border-left-color: var(--gold); }
     .hero-tab .tab-icon {
       width: 34px; height: 34px; border-radius: 50%;
-      background: rgba(201,168,76,0.08);
-      border: 1px solid rgba(201,168,76,0.22);
+      background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.22);
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0; font-size: 1rem; transition: all 0.25s;
     }
@@ -300,24 +284,100 @@
     .hero-tab .tab-arrow { margin-left: auto; color: var(--gold); opacity: 0; transition: all 0.25s; padding-left: 0.5rem; }
     .hero-tab:hover .tab-arrow { opacity: 1; transform: translateX(3px); }
 
+    /* ── LARGE MONITORS (1400px+) ── */
+    @media (min-width: 1400px) {
+      nav { padding: 1.2rem 4rem; }
+      .hero { padding: 10rem 4rem 8rem; }
+      .hero-content { max-width: 1320px; gap: 0 5rem; }
+      .intro-inner { max-width: 1320px; gap: 8rem; }
+      .tiles-grid { max-width: 1320px; }
+      .detail-inner { max-width: 1320px; gap: 10rem; }
+      .stats-inner { max-width: 1320px; }
+      .cta-inner { max-width: 800px; }
+      .footer-inner { max-width: 1320px; }
+      .intro-band,.services-section,.detail-section,.stats-section,.cta-section { padding-left: 4rem; padding-right: 4rem; }
+    }
+
+    /* ── EXTRA LARGE (1920px+) ── */
+    @media (min-width: 1920px) {
+      nav { padding: 1.4rem 6rem; }
+      .nav-logo { font-size: 3.2rem; }
+      .hero { padding: 12rem 6rem 10rem; }
+      .hero-content { max-width: 1600px; }
+      .intro-inner,.tiles-grid,.detail-inner,.stats-inner,.footer-inner { max-width: 1600px; }
+      .intro-band,.services-section,.detail-section,.stats-section,.cta-section,.footer { padding-left: 6rem; padding-right: 6rem; }
+      .hero-sub { max-width: 640px; font-size: 1.15rem; }
+      .stat-number { font-size: 5.5rem; }
+    }
+
+    /* ── TABLET LANDSCAPE (901–1100px) ── */
+    @media (max-width: 1100px) and (min-width: 901px) {
+      nav { padding: 1rem 2rem; }
+      .hero { padding: 8rem 2rem 6rem; }
+      .hero-content { max-width: 100%; gap: 0 2rem; }
+      .hero-tab { min-width: 180px; padding: 1.1rem 1.2rem; }
+      .intro-inner { gap: 3rem; }
+      .detail-inner { gap: 4rem; }
+      .intro-band,.services-section,.detail-section,.stats-section,.cta-section { padding-left: 2rem; padding-right: 2rem; }
+    }
+
+    /* ── TABLET PORTRAIT (641–900px) ── */
     @media (max-width: 900px) {
-      nav { padding:1rem 1.5rem; }
-      .nav-links { display:none; }
-      .hero { padding:7rem 1.5rem 5rem; }
+      nav { padding: 1rem 1.5rem; }
+      .nav-logo { font-size: 2rem; }
+      .nav-links { display: none; }
+      .hero { padding: 7rem 1.5rem 5rem; }
       .hero-content { grid-template-columns: 1fr; }
       .hero-tabs { display: none; }
-      .intro-inner { grid-template-columns:1fr; gap:2rem; }
-      .intro-heading { position:static; }
-      .tiles-grid { grid-template-columns:1fr; }
-      .detail-inner { grid-template-columns:1fr; gap:3rem; }
-      .detail-sticky { position:static; }
-      .stats-grid { grid-template-columns:repeat(2,1fr); }
-      .stat-item { border-right:none; border-bottom:1px solid rgba(201,168,76,0.1); padding:2rem 0; }
-      .stat-item:not(:first-child) { padding-left:0; }
-      .footer-inner { flex-direction:column; text-align:center; }
-      .intro-band,.services-section,.detail-section,.stats-section,.cta-section { padding-left:1.5rem; padding-right:1.5rem; }
+      .intro-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .intro-heading { position: static; }
+      .tiles-grid { grid-template-columns: repeat(2, 1fr); }
+      .detail-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .detail-sticky { position: static; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(201,168,76,0.1); padding: 2rem 0; }
+      .stat-item:not(:first-child) { padding-left: 0; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .intro-band,.services-section,.detail-section,.stats-section,.cta-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .detail-num { font-size: 4rem; }
+      .hero h1 { font-size: clamp(2rem, 5vw, 3rem); }
     }
-    @media (max-width: 600px) { .stats-grid { grid-template-columns:1fr; } }
+
+    /* ── MOBILE (481–640px) ── */
+    @media (max-width: 640px) {
+      nav { padding: 0.9rem 1rem; }
+      .nav-logo { font-size: 1.6rem; }
+      .hero { padding: 6rem 1rem 5rem; }
+      .hero h1 { font-size: clamp(1.9rem, 7vw, 2.6rem); }
+      .hero-sub { font-size: 0.95rem; }
+      .tiles-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .tile-card { padding: 2rem 1.5rem 2.5rem; }
+      .tile-card h2 { font-size: 2.2rem; }
+      .cta-section { padding: 6rem 1rem; }
+      .intro-band { padding: 4rem 1rem; }
+      .services-section,.detail-section,.stats-section { padding: 4rem 1rem; }
+      footer { padding: 3rem 1rem; }
+      .cta-contact-block { gap: 1.5rem; }
+      .stats-header { flex-direction: column; }
+    }
+
+    /* ── SMALL MOBILE (max 480px) ── */
+    @media (max-width: 480px) {
+      .nav-logo { font-size: 1.35rem; }
+      .hero h1 { font-size: clamp(1.7rem, 8vw, 2.2rem); }
+      .hero-sub { font-size: 0.9rem; max-width: 100%; }
+      .hero-contact a, .hero-contact span { font-size: 0.8rem; }
+      .btn-primary, .btn-ghost { font-size: 0.72rem; padding: 0.75rem 1.6rem; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-number { font-size: 3rem; }
+      .tile-num { font-size: 3rem; }
+      .tile-card h2 { font-size: 1.9rem; }
+      .section-heading { font-size: 1.8rem; }
+      .detail-section h2 { font-size: 1.8rem; }
+      .marquee-track span { margin: 0 1.2rem; }
+      .ticker-tape { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -356,8 +416,6 @@
         <a href="#asset-managers" class="btn-ghost">View Services</a>
       </div>
     </div>
-
-    <!-- Right-side tabs -->
     <div class="hero-tabs">
       <a href="#intro-approach" class="hero-tab">
         <div class="tab-icon">&#9671;</div>
@@ -392,7 +450,7 @@
   </div>
 </div>
 
-<!-- INTRO with collaboration canvas -->
+<!-- INTRO -->
 <section class="intro-band" id="intro-approach">
   <canvas id="collab-canvas"></canvas>
   <div class="intro-inner">
@@ -586,12 +644,11 @@
 
 <script>
 /* ══════════════════════════════════════════════════════
-   HERO CANVAS — Live stock market chart background
+   HERO CANVAS — Stock market chart background
 ══════════════════════════════════════════════════════ */
 (function() {
   const canvas = document.getElementById('hero-canvas');
   const ctx    = canvas.getContext('2d');
-
   let W, H;
   function resize() {
     W = canvas.width  = canvas.offsetWidth;
@@ -639,18 +696,15 @@
     const laneY = idx * laneH;
     const step  = s.cw + s.gap;
     const prices = s.prices;
-
     s.offset = (s.offset + s.speed) % (prices.length * step);
     const startI   = Math.floor(s.offset / step);
     const xStart   = -(s.offset % step);
     const visCount = Math.ceil(W / step) + 2;
-
     const visSlice = Array.from({ length: visCount }, (_, k) => prices[(startI + k) % prices.length]);
     const lo = Math.min(...visSlice), hi = Math.max(...visSlice);
     const range = hi - lo || 1;
     const pad = laneH * 0.1;
     const scaleY = v => laneY + laneH - pad - ((v - lo) / range) * (laneH - pad * 2);
-
     const linePoints = [];
     ctx.save();
     for (let i = 0; i < visCount; i++) {
@@ -661,21 +715,18 @@
       const low  = Math.min(open, close) - Math.random() * 2.5;
       const isUp = close >= open;
       const x    = xStart + i * step;
-
       ctx.strokeStyle = isUp ? 'rgba(74,222,128,0.3)' : 'rgba(248,113,113,0.3)';
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.moveTo(x + s.cw / 2, scaleY(high));
       ctx.lineTo(x + s.cw / 2, scaleY(low));
       ctx.stroke();
-
       const yTop = Math.min(scaleY(open), scaleY(close));
       const yH   = Math.max(1, Math.abs(scaleY(open) - scaleY(close)));
       ctx.fillStyle = isUp ? 'rgba(74,222,128,0.18)' : 'rgba(248,113,113,0.15)';
       ctx.fillRect(x, yTop, s.cw, yH);
       linePoints.push({ x: x + s.cw / 2, y: scaleY(close) });
     }
-
     if (linePoints.length > 1) {
       ctx.beginPath();
       ctx.strokeStyle = s.bright ? 'rgba(201,168,76,0.7)' : 'rgba(201,168,76,0.2)';
@@ -707,7 +758,6 @@
     { sym:'SS&C', p:71.20  },
   ];
   const live = TICKERS.map(t => ({ ...t, chg: (Math.random() - 0.5) * 3 }));
-
   function refreshTicker() {
     live.forEach(d => {
       d.p   = Math.max(1, d.p + (Math.random() - 0.495) * 0.25);
@@ -727,12 +777,11 @@
 
 
 /* ══════════════════════════════════════════════════════
-   INTRO CANVAS — Business collaboration network
+   INTRO CANVAS — Collaboration network
 ══════════════════════════════════════════════════════ */
 (function() {
   const canvas = document.getElementById('collab-canvas');
   const ctx    = canvas.getContext('2d');
-
   let W, H;
   function resize() {
     W = canvas.width  = canvas.offsetWidth;
@@ -746,7 +795,6 @@
     'IBOR','Risk Engine','Compliance','Reporting',
     'Cloud Layer','API Hub','Analytics','Data Ops'
   ];
-
   let nodes = [], edges = [];
 
   function buildGraph() {
@@ -762,7 +810,6 @@
       pSpeed: 0.018 + Math.random() * 0.018,
       hub:    Math.random() > 0.7,
     }));
-
     edges = [];
     nodes.forEach((n, i) => {
       const sorted = nodes
@@ -791,25 +838,21 @@
 
   function animateCollab() {
     ctx.clearRect(0, 0, W, H);
-
     nodes.forEach(n => {
       n.x += n.vx; n.y += n.vy; n.phase += n.pSpeed;
       if (n.x < 50 || n.x > W - 50) n.vx *= -1;
       if (n.y < 30 || n.y > H - 30) n.vy *= -1;
     });
-
     edges.forEach(e => {
       e.phase += e.speed;
       const na = nodes[e.a], nb = nodes[e.b];
       const dist  = Math.hypot(nb.x - na.x, nb.y - na.y);
       const alpha = Math.max(0, 0.3 - dist / (Math.max(W, H) * 0.85));
       if (alpha <= 0) return;
-
       ctx.save();
       ctx.strokeStyle = `rgba(201,168,76,${alpha})`;
       ctx.lineWidth   = 0.7;
       ctx.beginPath(); ctx.moveTo(na.x, na.y); ctx.lineTo(nb.x, nb.y); ctx.stroke();
-
       e.packets.forEach(pk => {
         pk.t += pk.speed * pk.dir;
         if (pk.t > 1) pk.t = 0;
@@ -821,24 +864,20 @@
       });
       ctx.restore();
     });
-
     nodes.forEach(n => {
       const pulse = Math.sin(n.phase);
       const r     = n.r + 1.2 * pulse;
-
       ctx.save();
       ctx.beginPath();
       ctx.arc(n.x, n.y, r + 8, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(201,168,76,${0.06 + 0.04 * pulse})`;
       ctx.fill();
-
       ctx.beginPath();
       ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
       ctx.fillStyle = n.hub
         ? `rgba(201,168,76,${0.75 + 0.2 * pulse})`
         : `rgba(201,168,76,${0.28 + 0.1 * pulse})`;
       ctx.fill();
-
       if (n.hub || n.r > 7) {
         ctx.font      = '500 9.5px "DM Sans", sans-serif';
         ctx.fillStyle = 'rgba(255,255,255,0.5)';
@@ -847,7 +886,6 @@
       }
       ctx.restore();
     });
-
     requestAnimationFrame(animateCollab);
   }
   animateCollab();

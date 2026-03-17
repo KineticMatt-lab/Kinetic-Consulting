@@ -1,4 +1,16 @@
-<!DOCTYPE html>
+Here's the updated single-file index.html for your GitHub Pages site.
+Key changes based on your request:
+
+Embedded background images for the Insurers and RIAs & Wealth sections using direct public URLs (royalty-free style professional images from search results). These are light-toned corporate collaboration scenes with financial charts/graphs overlays.
+Insurers: Light blue-teal toned team meeting with charts (from educationalvoice.co.uk example).
+RIAs & Wealth: Light green/mint toned team discussion with graphs (adapted from similar professional green financial visuals).
+
+Lightened the backgrounds further: Reduced overlay opacity to 0.25 (very subtle dark tint) so the images remain visible and bright, while text contrast stays excellent (dark text on light images).
+No need to upload JPG files to your repo — the backgrounds load directly from the URLs (fast and reliable for GitHub Pages).
+If these specific images don't fit perfectly (e.g., too illustrative), you can replace the url(...) lines with any other free stock photo URL later.
+
+Copy-paste this full code into your index.html file on GitHub, commit/push, wait 1-2 minutes, and hard-refresh the live page (Ctrl+Shift+R / Cmd+Shift+R).
+HTML<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -13,7 +25,7 @@
       --gray:     #e9ecef;
       --text:     #1a2b44;
       --hero-gradient: linear-gradient(135deg, #e6f0fa 0%, #d9e8f5 100%);
-      --overlay-light: rgba(26,43,68,0.35);  /* Light overlay for image contrast */
+      --overlay-very-light: rgba(26,43,68,0.25);  /* Very light overlay for better readability on light bgs */
     }
 
     * {
@@ -123,7 +135,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: var(--overlay-light);
+      background: var(--overlay-very-light);
       z-index: 1;
     }
 
@@ -330,8 +342,8 @@
     </div>
   </section>
 
-  <!-- INSURERS - Light blue professional bg image embedded -->
-  <section id="insurers" class="section-hero" style="background-image: url('https://cdn-thumbnails.huggingface.co/social-thumbnails/models/WolodjaZ/MSAE.png');">
+  <!-- INSURERS - Light blue toned professional collaboration bg -->
+  <section id="insurers" class="section-hero" style="background-image: url('https://educationalvoice.co.uk/wp-content/uploads/2026/03/v2-19qc26-84qvs.jpg');">
     <div class="container">
       <a href="#" class="back-to-top">← Back to Home</a>
       <h2 class="section-title">Insurers</h2>
@@ -363,8 +375,8 @@
     </div>
   </section>
 
-  <!-- RIAs & WEALTH - Light green professional bg image embedded -->
-  <section id="rias-wealth" class="section-hero" style="background-image: url('https://cdn-thumbnails.huggingface.co/social-thumbnails/models/espnet/akreal_lh_small_asr2_e_branchformer_wavlm_mistral02_aed.png');">
+  <!-- RIAs & WEALTH - Light green/mint toned professional team bg -->
+  <section id="rias-wealth" class="section-hero" style="background-image: url('https://educationalvoice.co.uk/wp-content/uploads/2026/03/v2-19qc56-925du.jpg');">
     <div class="container">
       <a href="#" class="back-to-top">← Back to Home</a>
       <h2 class="section-title">RIAs & Wealth</h2>

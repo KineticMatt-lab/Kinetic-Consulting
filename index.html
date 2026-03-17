@@ -13,7 +13,7 @@
       --gray:     #e9ecef;
       --text:     #1a2b44;
       --hero-gradient: linear-gradient(135deg, #e6f0fa 0%, #d9e8f5 100%);
-      --overlay-ultralight: rgba(26,43,68,0.15);  /* Very light for brightened images */
+      --overlay-ultralight: rgba(26,43,68,0.15);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -85,7 +85,7 @@
       display: flex;
       align-items: center;
       color: var(--dark);
-      filter: brightness(1.35) contrast(1.15) saturate(0.95);  /* Lighten the background image */
+      filter: brightness(1.35) contrast(1.15) saturate(0.95);
       background-blend-mode: lighten;
     }
 
@@ -103,8 +103,8 @@
     .section-hero h3,
     .section-hero p,
     .section-hero ul.benefits li {
-      font-weight: 700;  /* Bold for high contrast */
-      text-shadow: 0 1px 3px rgba(0,0,0,0.25);  /* Slight shadow for pop */
+      font-weight: 700;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.25);
     }
 
     .section-hero h2.section-title { font-weight: 800; font-size: clamp(2.8rem, 7vw, 4rem); }
@@ -281,8 +281,8 @@
     </div>
   </section>
 
-  <!-- Insurers - Your first supplied image (dark blue with charts overlay), lightened -->
-  <section id="insurers" class="section-hero" style="background-image: url('https://files.oaiusercontent.com/file-0v8x3mGfA8gV1Z4Xj7k3Z1vI?se=2026-03-17T04%3A25%3A00Z&sp=r&sv=2024-08-04&sr=b&rscca=1&sig=example-signature-here');">
+  <!-- Insurers -->
+  <section id="insurers" class="section-hero" style="background-image: url('insurers-bg.jpg');">
     <div class="container">
       <a href="#" class="back-to-top">← Back to Home</a>
       <h2 class="section-title">Insurers</h2>
@@ -314,8 +314,8 @@
     </div>
   </section>
 
-  <!-- RIAs & Wealth - Your second supplied image (lighter green with charts overlay), lightened -->
-  <section id="rias-wealth" class="section-hero" style="background-image: url('https://files.oaiusercontent.com/file-abc123example?se=2026-03-17T04%3A25%3A00Z&sp=r&sv=2024-08-04&sr=b&rscca=1&sig=example-signature-here');">
+  <!-- RIAs & Wealth -->
+  <section id="rias-wealth" class="section-hero" style="background-image: url('rias-wealth-bg.jpg');">
     <div class="container">
       <a href="#" class="back-to-top">← Back to Home</a>
       <h2 class="section-title">RIAs & Wealth</h2>
@@ -347,7 +347,7 @@
     </div>
   </section>
 
-  <!-- CTA, Results, Footer remain unchanged from previous version -->
+  <!-- CTA -->
   <section id="cta">
     <div class="container">
       <h2>30-Minute Strategy Call</h2>
@@ -366,6 +366,7 @@
     </div>
   </section>
 
+  <!-- Results -->
   <section id="results">
     <div class="container">
       <h2>Proven Results</h2>
@@ -392,6 +393,7 @@
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
     <div class="container">
       <p>Kinetic Consulting • Greenwich, CT</p>

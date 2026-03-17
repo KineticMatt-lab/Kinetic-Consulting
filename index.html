@@ -198,9 +198,9 @@
     .detail-section:nth-of-type(even) { background: var(--mist); }
     .detail-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1.6fr; gap:8rem; align-items:start; }
     .detail-sticky { position:sticky; top:8rem; }
-    .detail-num { font-family:'Cormorant Garamond',serif; font-size:7rem; font-weight:600; color:rgba(201,168,76,0.7); line-height:1; display:block; margin-bottom:-1rem; }
+    .detail-num { font-family:'Cormorant Garamond',serif; font-size:7rem; font-weight:600; color:rgba(201,168,76,0.7); line-height:1; display:block; margin-bottom:1.5rem; }
+    .detail-sub { font-family:'Cormorant Garamond',serif; font-size:clamp(1.8rem,3vw,2.6rem); font-weight:500; letter-spacing:0.04em; text-transform:none; color:var(--gold); margin-bottom:1rem; display:block; }
     .detail-section h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(2.8rem,5vw,4.2rem); font-weight:500; color:var(--navy); line-height:1.1; margin-bottom:0.5rem; }
-    .detail-sub { font-size:0.75rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:1.5rem; display:block; }
     .detail-intro { font-size:1rem; color:var(--slate); line-height:1.85; font-weight:300; margin-bottom:2.5rem; }
     .detail-cta { display:inline-block; border:1px solid var(--navy); color:var(--navy); font-size:0.75rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; padding:0.75rem 1.8rem; text-decoration:none; border-radius:2px; transition:all 0.25s; }
     .detail-cta:hover { background:var(--navy); color:#fff; }
@@ -340,6 +340,7 @@
       .footer-inner { flex-direction: column; text-align: center; }
       .intro-band,.services-section,.detail-section,.stats-section,.cta-section { padding-left: 1.5rem; padding-right: 1.5rem; }
       .detail-num { font-size: 5rem; }
+      .detail-sub { font-size: clamp(1.5rem, 3vw, 2rem); }
       .detail-section h2 { font-size: clamp(2.2rem, 5vw, 3.2rem); }
       .hero h1 { font-size: clamp(2rem, 5vw, 3rem); }
     }
@@ -356,6 +357,7 @@
       .tile-card { padding: 2rem 1.5rem 2.5rem; }
       .tile-card h2 { font-size: 2.2rem; }
       .detail-num { font-size: 4rem; }
+      .detail-sub { font-size: 1.4rem; }
       .detail-section h2 { font-size: clamp(2rem, 6vw, 2.8rem); }
       .cta-section { padding: 6rem 1rem; }
       .intro-band { padding: 4rem 1rem; }
@@ -377,6 +379,7 @@
       .tile-num { font-size: 3rem; }
       .tile-card h2 { font-size: 1.9rem; }
       .detail-num { font-size: 3.5rem; }
+      .detail-sub { font-size: 1.2rem; }
       .detail-section h2 { font-size: 1.9rem; }
       .section-heading { font-size: 1.8rem; }
       .marquee-track span { margin: 0 1.2rem; }

@@ -4,433 +4,1059 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kinetic Consulting | Data & Platform Strategy for Investment Firms</title>
-  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --dark:     #1a2b44;
-      --accent:   #00b4d8;
-      --light:    #f8f9fc;
-      --gray:     #e9ecef;
-      --text:     #1a2b44;
-      --hero-gradient: linear-gradient(135deg, #e6f0fa 0%, #d9e8f5 100%);
-      --overlay-ultralight: rgba(26,43,68,0.10); /* ultra-light overlay */
-      --insurers-text: white;
-      --rias-text: #c8e6c9; /* light mint green */
-      --footer-green: #c8e6c9;
+      --navy:    #0d1b2e;
+      --navy2:   #152238;
+      --gold:    #c9a84c;
+      --gold2:   #e8c46a;
+      --cream:   #f5f0e8;
+      --mist:    #eef2f7;
+      --slate:   #4a5568;
+      --rule:    rgba(201,168,76,0.3);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: system-ui, -apple-system, sans-serif;
-      line-height: 1.8;
-      color: var(--text);
-      background: var(--light);
-      scroll-behavior: smooth;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--navy);
+      background: #fff;
+      line-height: 1.7;
+      overflow-x: hidden;
     }
 
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-
-    header.hero {
-      background: var(--hero-gradient);
-      color: var(--dark);
-      text-align: center;
-      padding: 100px 20px 80px;
-      border-bottom: 1px solid #d0e0f0;
-    }
-
-    h1 { font-size: clamp(2.8rem, 7vw, 4.2rem); margin-bottom: 0.4rem; }
-
-    .tagline { font-size: clamp(1.4rem, 4vw, 1.8rem); margin: 1rem 0 1.5rem; }
-
-    .contact-bar { font-size: 1.25rem; margin-top: 1.5rem; }
-
-    .contact-bar a { color: var(--accent); text-decoration: none; font-weight: 500; }
-
-    .contact-bar a:hover { text-decoration: underline; }
-
-    .tiles {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      margin: 5rem 0 6rem;
-    }
-
-    .tile {
-      background: white;
-      border: 2px solid #d0e0f0;
-      border-radius: 12px;
-      padding: 2.5rem 2rem;
-      text-align: center;
-      transition: all 0.28s ease;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    }
-
-    .tile:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.1);
-      border-color: var(--accent);
-    }
-
-    .tile h2 { color: var(--dark); margin-bottom: 1rem; font-size: 1.9rem; }
-
-    section { padding: 6rem 0; }
-
-    .section-hero {
-      min-height: 70vh;
-      background-size: cover;
-      background-position: center;
-      text-align: center;
-      position: relative;
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
       display: flex;
       align-items: center;
-      filter: brightness(1.55) contrast(1.25) saturate(0.95); /* even lighter */
-      background-blend-mode: lighten;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      background: rgba(13,27,46,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
     }
 
-    .section-hero::before {
-      content: "";
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 500;
+      color: #fff;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold) !important;
+      padding: 0.45rem 1.2rem;
+      border-radius: 2px;
+      font-size: 0.78rem !important;
+      letter-spacing: 0.12em;
+      transition: all 0.25s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold) !important;
+      color: var(--navy) !important;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 8rem 3rem 6rem;
+    }
+
+    .hero::before {
+      content: '';
       position: absolute;
       inset: 0;
-      background: var(--overlay-ultralight);
-      z-index: 1;
+      background:
+        radial-gradient(ellipse 70% 60% at 80% 50%, rgba(201,168,76,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 10% 80%, rgba(21,34,56,0.8) 0%, transparent 60%);
     }
 
-    .section-hero > .container { position: relative; z-index: 2; }
-
-    /* Outlined text styles */
-    .outlined-white {
-      color: var(--insurers-text);
-      -webkit-text-stroke: 1px black;
-      text-shadow: 0 0 5px black, 1px 1px 3px rgba(0,0,0,0.7);
-      font-weight: 800;
-    }
-
-    .outlined-green {
-      color: var(--rias-text);
-      -webkit-text-stroke: 1px black;
-      text-shadow: 0 0 5px black, 1px 1px 3px rgba(0,0,0,0.7);
-      font-weight: 800;
-    }
-
-    .section-hero h2.section-title { font-size: clamp(3.2rem, 9vw, 5rem); margin-bottom: 1.2rem; }
-    .section-hero h3 { font-size: 2.4rem; margin: 3rem 0 1.5rem; }
-    .section-hero p,
-    .section-hero ul.benefits { font-size: 1.35rem; line-height: 1.9; }
-
-    .back-to-top {
-      display: inline-block;
-      color: var(--accent);
-      font-size: 1.35rem;
-      margin-bottom: 2rem;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .back-to-top:hover { text-decoration: underline; }
-
-    h2.section-title { font-size: clamp(2.4rem, 6vw, 3.6rem); margin-bottom: 0.8rem; }
-
-    h3 { margin: 2.5rem 0 1rem; font-size: 1.9rem; }
-
-    ul.benefits { list-style: none; font-size: 1.35rem; margin: 1.5rem 0; }
-
-    ul.benefits li {
-      margin: 1.2rem 0;
-      padding-left: 2.2rem;
-      position: relative;
-    }
-
-    ul.benefits li::before {
-      content: "✔";
-      color: var(--accent);
+    .hero-grid {
       position: absolute;
-      left: 0;
-      font-weight: bold;
-      font-size: 1.5rem;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
     }
 
-    #cta {
-      background: var(--dark);
-      color: white;
-      text-align: center;
-      padding: 9rem 20px;
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
     }
 
-    #cta h2 { color: white; font-size: 3rem; margin-bottom: 1.5rem; }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s forwards;
+    }
 
-    .big-cta-btn {
-      display: inline-block;
-      background: var(--accent);
-      color: white;
-      font-size: 1.35rem;
-      font-weight: 600;
-      padding: 1.1rem 2.8rem;
-      border-radius: 10px;
+    .hero-eyebrow::before {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-eyebrow span {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 400;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.8rem, 8vw, 7rem);
+      font-weight: 300;
+      color: #fff;
+      line-height: 1.05;
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.35s forwards;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 520px;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.5s forwards;
+    }
+
+    .hero-contact {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.65s forwards;
+    }
+
+    .hero-contact .led-by {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-contact a, .hero-contact span {
+      color: rgba(255,255,255,0.75);
       text-decoration: none;
-      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .hero-contact a:hover { color: var(--gold); }
+
+    .hero-contact .divider {
+      width: 1px;
+      height: 14px;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.8s forwards;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.9rem 2.4rem;
+      text-decoration: none;
+      border-radius: 2px;
       transition: all 0.25s;
     }
 
-    .big-cta-btn:hover {
-      background: #0096b3;
-      transform: translateY(-3px);
+    .btn-primary:hover {
+      background: var(--gold2);
+      transform: translateY(-2px);
     }
 
-    #results { background: var(--gray); text-align: center; }
+    .btn-ghost {
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.8);
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.9rem 2.4rem;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ─── MARQUEE STRIP ─── */
+    .marquee-strip {
+      background: var(--gold);
+      padding: 0.7rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-track {
+      display: inline-block;
+      animation: marquee 28s linear infinite;
+    }
+
+    .marquee-track span {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--navy);
+      font-weight: 500;
+      margin: 0 2.5rem;
+    }
+
+    .marquee-track span::before {
+      content: '◆';
+      margin-right: 2.5rem;
+      font-size: 0.5rem;
+      vertical-align: middle;
+    }
+
+    /* ─── INTRO BAND ─── */
+    .intro-band {
+      background: var(--mist);
+      padding: 6rem 3rem;
+    }
+
+    .intro-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .intro-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .intro-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+      max-width: 60px;
+    }
+
+    .intro-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.2;
+      position: sticky;
+      top: 8rem;
+    }
+
+    .intro-body p {
+      font-size: 1rem;
+      color: var(--slate);
+      margin-bottom: 1.4rem;
+      font-weight: 300;
+      line-height: 1.85;
+    }
+
+    /* ─── SERVICE TILES ─── */
+    .services-section {
+      padding: 6rem 3rem;
+      background: #fff;
+    }
+
+    .section-header {
+      max-width: 1100px;
+      margin: 0 auto 4rem;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.15;
+    }
+
+    .tiles-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .tile-card {
+      background: var(--navy);
+      padding: 3rem 2.5rem 3.5rem;
+      text-decoration: none;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+      display: block;
+    }
+
+    .tile-card:nth-child(2) { background: var(--navy2); }
+    .tile-card:nth-child(3) { background: #1e3050; }
+
+    .tile-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .tile-card:hover::after { transform: scaleX(1); }
+    .tile-card:hover { background: #0a1525; }
+
+    .tile-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      color: rgba(201,168,76,0.15);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .tile-card h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 400;
+      margin-bottom: 0.6rem;
+      color: #fff;
+    }
+
+    .tile-sub {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .tile-card p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .tile-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .tile-arrow::after {
+      content: '→';
+      transition: transform 0.2s;
+    }
+
+    .tile-card:hover .tile-arrow::after { transform: translateX(4px); }
+
+    /* ─── SERVICE DETAIL SECTIONS ─── */
+    .detail-section {
+      padding: 8rem 3rem;
+      border-top: 1px solid var(--mist);
+    }
+
+    .detail-section:nth-of-type(even) { background: var(--mist); }
+
+    .detail-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 8rem;
+      align-items: start;
+    }
+
+    .detail-sticky {
+      position: sticky;
+      top: 8rem;
+    }
+
+    .detail-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 6rem;
+      font-weight: 300;
+      color: rgba(201,168,76,0.12);
+      line-height: 1;
+      display: block;
+      margin-bottom: -1rem;
+    }
+
+    .detail-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+
+    .detail-sub {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .detail-intro {
+      font-size: 1rem;
+      color: var(--slate);
+      line-height: 1.85;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+    }
+
+    .detail-cta {
+      display: inline-block;
+      border: 1px solid var(--navy);
+      color: var(--navy);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.8rem;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+
+    .detail-cta:hover {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .detail-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin: 2.5rem 0 1.2rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .detail-content h3:first-child { margin-top: 0; }
+
+    .benefit-list { list-style: none; }
+
+    .benefit-list li {
+      font-size: 0.92rem;
+      color: var(--slate);
+      padding: 0.75rem 0 0.75rem 1.6rem;
+      position: relative;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    .benefit-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 8px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    /* ─── STATS ─── */
+    .stats-section {
+      background: var(--navy);
+      padding: 8rem 3rem;
+    }
+
+    .stats-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .stats-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 5rem;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
 
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 3rem;
-      margin: 4rem 0 2rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid rgba(201,168,76,0.2);
     }
 
-    .stat-block { font-size: 1.35rem; }
+    .stat-item {
+      padding: 3rem 2rem 3rem 0;
+      border-right: 1px solid rgba(201,168,76,0.1);
+    }
 
-    .stat-block strong {
+    .stat-item:last-child { border-right: none; }
+    .stat-item:not(:first-child) { padding-left: 2rem; }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
       display: block;
-      font-size: 2.3rem;
-      color: var(--dark);
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.5rem;
     }
 
-    footer {
-      background: var(--dark);
-      color: white;
+    .stat-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    /* ─── CTA SECTION ─── */
+    .cta-section {
+      padding: 10rem 3rem;
+      background: #fff;
       text-align: center;
-      padding: 4rem 20px 3rem;
-      font-size: 1.15rem;
     }
 
-    footer a.footer-email {
-      color: var(--footer-green);
-      font-weight: 600;
+    .cta-inner { max-width: 700px; margin: 0 auto; }
+
+    .cta-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-section p {
+      font-size: 1rem;
+      color: var(--slate);
+      font-weight: 300;
+      line-height: 1.85;
+      margin-bottom: 3rem;
+    }
+
+    .cta-contact-block {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .cta-contact-item { text-align: center; }
+
+    .cta-contact-item .ci-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .cta-contact-item a, .cta-contact-item span {
+      font-size: 0.95rem;
+      color: var(--navy);
       text-decoration: none;
+      font-weight: 400;
     }
 
-    footer a.footer-email:hover {
-      color: #a0d8b0; /* lighter hover */
-      text-decoration: underline;
+    .cta-contact-item a:hover { color: var(--gold); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy);
+      padding: 4rem 3rem;
+      border-top: 1px solid rgba(201,168,76,0.15);
     }
 
-    @media (max-width: 640px) {
-      header.hero { padding: 80px 15px 60px; }
-      section { padding: 4rem 0; }
-      .tiles { margin: 3rem 0 4rem; }
-      .section-hero h2.section-title { font-size: 3rem; }
-      .section-hero h3 { font-size: 2.1rem; }
-      .section-hero p,
-      .section-hero ul.benefits { font-size: 1.2rem; }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      color: #fff;
+      font-weight: 400;
+    }
+
+    .footer-brand span { color: var(--gold); }
+
+    .footer-tagline {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+      margin-top: 0.3rem;
+      font-weight: 300;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ─── BACK NAV ─── */
+    .back-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      margin-bottom: 3rem;
+      transition: gap 0.2s;
+    }
+
+    .back-nav:hover { gap: 0.8rem; }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { padding: 7rem 1.5rem 5rem; }
+      .intro-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .intro-heading { position: static; }
+      .tiles-grid { grid-template-columns: 1fr; }
+      .detail-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .detail-sticky { position: static; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(201,168,76,0.1); padding: 2rem 0; }
+      .stat-item:not(:first-child) { padding-left: 0; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .intro-band, .services-section, .detail-section, .stats-section, .cta-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+    }
+
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Hero / Landing -->
-  <header class="hero">
-    <div class="container">
-      <h1>Kinetic Consulting</h1>
-      <p class="tagline">Data, IBOR & platform consulting for investment firms</p>
-      <p><strong>Led by Matthew Warner · MBA</strong></p>
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Kinetic <span>Consulting</span></a>
+    <ul class="nav-links">
+      <li><a href="#asset-managers">Asset Managers</a></li>
+      <li><a href="#insurers">Insurers</a></li>
+      <li><a href="#rias-wealth">RIAs &amp; Wealth</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#cta" class="nav-cta">Contact</a></li>
+    </ul>
+  </nav>
 
-      <div class="contact-bar">
-        ✉️ <a href="mailto:mwarner@optonline.net">mwarner@optonline.net</a>
-        &nbsp; • &nbsp;
-        📞 203-400-0006
-        &nbsp; • &nbsp;
-        🔗 <a href="https://www.linkedin.com/in/mattwarner1" target="_blank" rel="noopener">LinkedIn</a>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span>Investment Firm Consulting</span>
+      </div>
+      <h1>Data, IBOR &amp;<br><em>Platform Strategy</em></h1>
+      <p class="hero-sub">
+        We help asset managers, insurers, and wealth firms untangle their data, modernize their IBOR, and make platforms like SimCorp, Aladdin, and Eagle work for your teams.
+      </p>
+      <div class="hero-contact">
+        <span class="led-by">Led by Matthew Warner · MBA</span>
+        <a href="mailto:mwarner@optonline.net">mwarner@optonline.net</a>
+        <span class="divider"></span>
+        <span>203-400-0006</span>
+        <span class="divider"></span>
+        <a href="https://www.linkedin.com/in/mattwarner1" target="_blank" rel="noopener">LinkedIn →</a>
+      </div>
+      <div class="hero-actions">
+        <a href="#cta" class="btn-primary">Book a Strategy Call</a>
+        <a href="#asset-managers" class="btn-ghost">View Services</a>
       </div>
     </div>
   </header>
 
-  <div class="container">
-    <h2 style="text-align:center; margin:4rem 0 2rem; font-size:2.4rem; color: var(--dark);">
-      Client-centric consulting · Production-ready outcomes
-    </h2>
-
-    <p style="text-align:center; font-size:1.3rem; max-width:880px; margin:0 auto 4rem; color: var(--dark);">
-      Untangle your data, modernize your IBOR, and make platforms like SimCorp, Aladdin, and Eagle work for your teams.
-    </p>
-
-    <div class="tiles">
-      <a href="#asset-managers" class="tile">
-        <h2>Asset Managers</h2>
-        <p>Platform Modernization<br>IBOR transitions, data governance, risk & performance alignment</p>
-      </a>
-
-      <a href="#insurers" class="tile">
-        <h2>Insurers</h2>
-        <p>Pricing & Accounting<br>Pricing controls, PLM implementation, portfolio onboarding</p>
-      </a>
-
-      <a href="#rias-wealth" class="tile">
-        <h2>RIAs & Wealth</h2>
-        <p>Operations Optimization<br>OMS/EMS strategy, vendor integration, compliance workflows</p>
-      </a>
+  <!-- MARQUEE -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-track">
+      <span>SimCorp Dimension</span>
+      <span>BlackRock Aladdin</span>
+      <span>Eagle PACE</span>
+      <span>IBOR Transformation</span>
+      <span>Snowflake</span>
+      <span>Databricks</span>
+      <span>AWS</span>
+      <span>Data Governance</span>
+      <span>Charles River</span>
+      <span>Bloomberg AIM</span>
+      <span>SimCorp Dimension</span>
+      <span>BlackRock Aladdin</span>
+      <span>Eagle PACE</span>
+      <span>IBOR Transformation</span>
+      <span>Snowflake</span>
+      <span>Databricks</span>
+      <span>AWS</span>
+      <span>Data Governance</span>
+      <span>Charles River</span>
+      <span>Bloomberg AIM</span>
     </div>
   </div>
 
-  <!-- Asset Managers -->
-  <section id="asset-managers">
-    <div class="container">
-      <a href="#" class="back-to-top" style="color: var(--accent);">← Back to Home</a>
-      <h2 class="section-title">Asset Managers</h2>
-      <h3>Platform Modernization & IBOR Strategy</h3>
-
-      <p>We help Asset Managers modernize their data architecture and investment book of record (IBOR).</p>
-      <p>Whether you're migrating from legacy systems, implementing new front-to-back platforms, or need clean real-time data across teams — we deliver production-ready solutions quickly.</p>
-
-      <h3>Typical Engagements</h3>
-      <ul class="benefits">
-        <li>Full IBOR transformation and data governance framework</li>
-        <li>SimCorp Dimension, BlackRock Aladdin, Eagle PACE implementations & optimizations</li>
-        <li>Golden source data strategy & reconciliation automation</li>
-        <li>Risk & performance alignment (attribution, stress testing, regulatory reporting)</li>
-        <li>Cloud migration & modern data platform architecture (Snowflake, Databricks, AWS)</li>
-      </ul>
-
-      <h3>Results You Can Expect</h3>
-      <ul class="benefits">
-        <li>Single source of truth for positions, cash, transactions</li>
-        <li>60–70% reduction in manual data processes</li>
-        <li>Audit-ready documentation and controls</li>
-        <li>Faster month-end & client reporting</li>
-      </ul>
-
-      <p style="text-align:center; margin:4rem 0;">
-        <a href="#cta" class="big-cta-btn">Book 30-minute strategy call</a>
-      </p>
+  <!-- INTRO BAND -->
+  <section class="intro-band">
+    <div class="intro-inner">
+      <div>
+        <div class="intro-label">Our Approach</div>
+        <h2 class="intro-heading">Client-centric consulting.<br>Production-ready outcomes.</h2>
+      </div>
+      <div class="intro-body">
+        <p>Investment firms face increasingly complex data landscapes — fragmented systems, legacy IBORs, and platforms that don't talk to each other. The result: manual workarounds, delayed reporting, and risk blind spots.</p>
+        <p>Kinetic Consulting brings senior-level expertise directly to your team. We don't hand off to junior staff. Every engagement is run by practitioners who've sat in your seat and delivered real transformations at firms like yours.</p>
+        <p>We work across the full front-to-back stack — from data strategy and architecture through platform implementation, reconciliation automation, and regulatory reporting — and we stay until it's in production.</p>
+      </div>
     </div>
   </section>
 
-  <!-- Insurers - white outlined text -->
-  <section id="insurers" class="section-hero" style="background-image: url('insurers-bg.jpg');">
-    <div class="container outlined-white">
-      <a href="#" class="back-to-top">← Back to Home</a>
-      <h2 class="section-title">Insurers</h2>
-      <p style="font-size:2.1rem; margin:1.3rem 0 4rem;">Pricing & Accounting</p>
-
-      <h3>We deliver production-ready pricing controls, PLM implementations, and seamless portfolio onboarding.</h3>
-      <p>Move from fragmented spreadsheets and legacy systems to clean, automated, audit-ready processes — while staying fully compliant.</p>
-
-      <h3>Typical Engagements</h3>
-      <ul class="benefits">
-        <li>Pricing engine modernization & real-time controls</li>
-        <li>Policy Lifecycle Management (PLM) implementation & optimization</li>
-        <li>Portfolio onboarding automation & data reconciliation</li>
-        <li>Accounting & reporting alignment (statutory, GAAP, IFRS)</li>
-        <li>Integration with SimCorp, Aladdin, Eagle or custom platforms</li>
-      </ul>
-
-      <h3>Results You Can Expect</h3>
-      <ul class="benefits">
-        <li>Manual pricing & valuation work reduced 60–70%</li>
-        <li>Faster month-end close & board reporting</li>
-        <li>Single source of truth for positions, cash, risk</li>
-        <li>Audit-ready documentation & controls</li>
-      </ul>
-
-      <p style="text-align:center; margin:5rem 0;">
-        <a href="#cta" class="big-cta-btn">Book 30-minute strategy call</a>
-      </p>
+  <!-- SERVICE TILES -->
+  <section class="services-section">
+    <div class="section-header">
+      <div class="section-label">Who We Serve</div>
+      <h2 class="section-heading">Three areas of deep expertise</h2>
+    </div>
+    <div class="tiles-grid">
+      <a href="#asset-managers" class="tile-card">
+        <span class="tile-num">01</span>
+        <h2>Asset Managers</h2>
+        <span class="tile-sub">Platform Modernization</span>
+        <p>IBOR transitions, data governance, risk &amp; performance alignment across your full investment stack.</p>
+        <span class="tile-arrow">Explore</span>
+      </a>
+      <a href="#insurers" class="tile-card">
+        <span class="tile-num">02</span>
+        <h2>Insurers</h2>
+        <span class="tile-sub">Pricing &amp; Accounting</span>
+        <p>Pricing controls, PLM implementation, and portfolio onboarding — clean, automated, audit-ready.</p>
+        <span class="tile-arrow">Explore</span>
+      </a>
+      <a href="#rias-wealth" class="tile-card">
+        <span class="tile-num">03</span>
+        <h2>RIAs &amp; Wealth</h2>
+        <span class="tile-sub">Operations Optimization</span>
+        <p>OMS/EMS strategy, vendor integration, compliance workflows, and scalable client operations.</p>
+        <span class="tile-arrow">Explore</span>
+      </a>
     </div>
   </section>
 
-  <!-- RIAs & Wealth - light green outlined text -->
-  <section id="rias-wealth" class="section-hero" style="background-image: url('rias-wealth-bg.jpg');">
-    <div class="container outlined-green">
-      <a href="#" class="back-to-top">← Back to Home</a>
-      <h2 class="section-title">RIAs & Wealth</h2>
-      <p style="font-size:2.1rem; margin:1.3rem 0 4rem;">Operations Optimization</p>
+  <!-- ASSET MANAGERS -->
+  <section id="asset-managers" class="detail-section">
+    <div class="detail-inner">
+      <div class="detail-sticky">
+        <a href="#" class="back-nav">← Home</a>
+        <span class="detail-num">01</span>
+        <div class="detail-sub">Asset Managers</div>
+        <h2>Platform Modernization &amp; IBOR Strategy</h2>
+        <p class="detail-intro">Whether you're migrating from legacy systems, implementing a new front-to-back platform, or need clean real-time data across teams — we deliver production-ready solutions, quickly.</p>
+        <a href="#cta" class="detail-cta">Book a call</a>
+      </div>
+      <div class="detail-content">
+        <h3>Typical Engagements</h3>
+        <ul class="benefit-list">
+          <li>Full IBOR transformation and data governance framework</li>
+          <li>SimCorp Dimension, BlackRock Aladdin, Eagle PACE implementations &amp; optimizations</li>
+          <li>Golden source data strategy &amp; reconciliation automation</li>
+          <li>Risk &amp; performance alignment — attribution, stress testing, regulatory reporting</li>
+          <li>Cloud migration &amp; modern data platform architecture (Snowflake, Databricks, AWS)</li>
+        </ul>
+        <h3>Results You Can Expect</h3>
+        <ul class="benefit-list">
+          <li>Single source of truth for positions, cash, and transactions</li>
+          <li>60–70% reduction in manual data processes</li>
+          <li>Audit-ready documentation and controls</li>
+          <li>Faster month-end close &amp; client reporting cycles</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-      <h3>We help RIAs and wealth firms streamline operations, integrate vendors, and build compliant, scalable workflows.</h3>
-      <p>Turn fragmented processes into efficient, technology-driven operations so your team can focus on client relationships.</p>
+  <!-- INSURERS -->
+  <section id="insurers" class="detail-section">
+    <div class="detail-inner">
+      <div class="detail-sticky">
+        <a href="#" class="back-nav">← Home</a>
+        <span class="detail-num">02</span>
+        <div class="detail-sub">Insurers</div>
+        <h2>Pricing &amp; Accounting</h2>
+        <p class="detail-intro">Move from fragmented spreadsheets and legacy systems to clean, automated, audit-ready processes — while staying fully compliant with statutory, GAAP, and IFRS requirements.</p>
+        <a href="#cta" class="detail-cta">Book a call</a>
+      </div>
+      <div class="detail-content">
+        <h3>Typical Engagements</h3>
+        <ul class="benefit-list">
+          <li>Pricing engine modernization &amp; real-time controls</li>
+          <li>Policy Lifecycle Management (PLM) implementation &amp; optimization</li>
+          <li>Portfolio onboarding automation &amp; data reconciliation</li>
+          <li>Accounting &amp; reporting alignment — statutory, GAAP, IFRS</li>
+          <li>Integration with SimCorp, Aladdin, Eagle or custom platforms</li>
+        </ul>
+        <h3>Results You Can Expect</h3>
+        <ul class="benefit-list">
+          <li>Manual pricing &amp; valuation work reduced 60–70%</li>
+          <li>Faster month-end close &amp; board reporting</li>
+          <li>Single source of truth for positions, cash, and risk</li>
+          <li>Audit-ready documentation &amp; controls</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-      <h3>Typical Engagements</h3>
-      <ul class="benefits">
-        <li>OMS/EMS strategy & implementation (Charles River, Eze, Bloomberg…)</li>
-        <li>Vendor integration & data flow automation</li>
-        <li>Compliance workflows & regulatory reporting modernization</li>
-        <li>Client onboarding & portfolio management optimization</li>
-        <li>Cloud migration & modern data architecture</li>
-      </ul>
+  <!-- RIAS & WEALTH -->
+  <section id="rias-wealth" class="detail-section">
+    <div class="detail-inner">
+      <div class="detail-sticky">
+        <a href="#" class="back-nav">← Home</a>
+        <span class="detail-num">03</span>
+        <div class="detail-sub">RIAs &amp; Wealth Firms</div>
+        <h2>Operations Optimization</h2>
+        <p class="detail-intro">Turn fragmented processes into efficient, technology-driven operations — so your team can focus on client relationships, not manual workarounds.</p>
+        <a href="#cta" class="detail-cta">Book a call</a>
+      </div>
+      <div class="detail-content">
+        <h3>Typical Engagements</h3>
+        <ul class="benefit-list">
+          <li>OMS/EMS strategy &amp; implementation — Charles River, Eze, Bloomberg</li>
+          <li>Vendor integration &amp; data flow automation</li>
+          <li>Compliance workflows &amp; regulatory reporting modernization</li>
+          <li>Client onboarding &amp; portfolio management optimization</li>
+          <li>Cloud migration &amp; modern data architecture</li>
+        </ul>
+        <h3>Results You Can Expect</h3>
+        <ul class="benefit-list">
+          <li>Trade &amp; settlement processing time cut 50%+</li>
+          <li>Significant reduction in compliance exceptions</li>
+          <li>Unified client portfolio view across systems</li>
+          <li>Scalable operations ready for AUM growth</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-      <h3>Results You Can Expect</h3>
-      <ul class="benefits">
-        <li>Trade & settlement processing time cut 50%+</li>
-        <li>Significant reduction in compliance exceptions</li>
-        <li>Unified client portfolio view across systems</li>
-        <li>Scalable operations ready for AUM growth</li>
-      </ul>
-
-      <p style="text-align:center; margin:5rem 0;">
-        <a href="#cta" class="big-cta-btn">Book 30-minute strategy call</a>
-      </p>
+  <!-- STATS -->
+  <section id="results" class="stats-section">
+    <div class="stats-inner">
+      <div class="stats-header">
+        <div>
+          <div class="section-label" style="color:var(--gold);">Proven Results</div>
+          <h2 class="section-heading" style="color:#fff;">Typical impact from<br>recent engagements</h2>
+        </div>
+        <p style="font-size:0.85rem;color:rgba(255,255,255,0.4);max-width:280px;font-weight:300;line-height:1.7;">
+          Across asset managers, insurers and wealth platforms. Full case studies available upon request.
+        </p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-number">65%</span>
+          <span class="stat-label">Reduction in<br>manual data work</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">52%</span>
+          <span class="stat-label">Fewer data<br>exceptions</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">42%</span>
+          <span class="stat-label">Faster reporting<br>turnaround</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">78%</span>
+          <span class="stat-label">Increase in<br>user confidence</span>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section id="cta">
-    <div class="container">
-      <h2>30-Minute Strategy Call</h2>
-      <p style="font-size:1.4rem; max-width:700px; margin:1.5rem auto 2.5rem;">
-        Quick fit conversation + concrete ideas tailored to your situation
-      </p>
-
-      <p style="font-size:1.35rem; margin:2rem 0;">
-        <strong>Email:</strong> <a href="mailto:mwarner@optonline.net">mwarner@optonline.net</a><br>
-        <strong>Phone:</strong> 203-400-0006
-      </p>
-
-      <p style="font-size:1.1rem; opacity:0.9;">
-        (You can later embed Calendly or a form here)
-      </p>
-    </div>
-  </section>
-
-  <!-- Results -->
-  <section id="results">
-    <div class="container">
-      <h2>Proven Results</h2>
-      <p style="font-size:1.35rem; max-width:760px; margin:1.5rem auto 4rem;">
-        Typical impact from recent engagements with asset managers, insurers and wealth platforms
-      </p>
-
-      <div class="stats-grid">
-        <div class="stat-block">
-          <strong>Strategy 30%</strong>
-          Data Mapping 40%<br>Execution 30%
+  <section id="cta" class="cta-section">
+    <div class="cta-inner">
+      <div class="section-label" style="justify-content:center;">Get Started</div>
+      <h2>Ready to modernize your investment data stack?</h2>
+      <p>Start with a focused 30-minute strategy call. We'll identify the highest-leverage opportunities in your platform, data, or operations — and share concrete ideas you can act on immediately, whether or not we work together.</p>
+      <a href="mailto:mwarner@optonline.net" class="btn-primary" style="font-size:0.85rem; padding:1rem 2.8rem;">
+        Book a 30-Minute Strategy Call
+      </a>
+      <div class="cta-contact-block">
+        <div class="cta-contact-item">
+          <span class="ci-label">Email</span>
+          <a href="mailto:mwarner@optonline.net">mwarner@optonline.net</a>
         </div>
-        <div class="stat-block">
-          <strong>Manual Work ↓ 65%</strong>
-          Data Exceptions ↓ 52%<br>
-          Reporting Speed ↑ 42%<br>
-          User Confidence ↑ 78%
+        <div class="cta-contact-item">
+          <span class="ci-label">Phone</span>
+          <span>203-400-0006</span>
+        </div>
+        <div class="cta-contact-item">
+          <span class="ci-label">LinkedIn</span>
+          <a href="https://www.linkedin.com/in/mattwarner1" target="_blank" rel="noopener">mattwarner1 →</a>
         </div>
       </div>
-
-      <p style="margin-top:3rem; font-size:1.35rem;">
-        Full case studies available upon request
-      </p>
     </div>
   </section>
 
-  <!-- Footer with light green email -->
+  <!-- FOOTER -->
   <footer>
-    <div class="container">
-      <p>Kinetic Consulting • Fairfield, CT</p>
-      <p style="margin:1rem 0;">
-        Helping investment firms turn complex data challenges into competitive advantage.
-      </p>
-      <p>
-        Matthew Warner •
-        <a href="mailto:mwarner@optonline.net" class="footer-email">mwarner@optonline.net</a> •
-        203-400-0006
-      </p>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">Kinetic <span>Consulting</span></div>
+        <div class="footer-tagline">Fairfield, CT · Investment firm data &amp; platform strategy</div>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#asset-managers">Asset Managers</a></li>
+        <li><a href="#insurers">Insurers</a></li>
+        <li><a href="#rias-wealth">RIAs &amp; Wealth</a></li>
+        <li><a href="mailto:mwarner@optonline.net">Contact</a></li>
+      </ul>
     </div>
   </footer>
 
